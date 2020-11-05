@@ -12,7 +12,7 @@ section{
   transform-style:preserve-3d;
   animation:roll 5s infinite linear;
   xtransform: rotatex(-90deg);
-  border: 1px solid red;
+  border: 1px solid paleturquoise;
 }
 
 div{

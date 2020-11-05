@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input {
+      display: none;
+    }
+
+    span {
+      display: block;
+      border-radius: 100px;
+      transition: 0.4s;
+    }
+
+    .bg-span {
+      width: 120px;
+      height: 60px;
+      position: relative;
+      background-color: #fff;
+      border: 2px solid rgba(190, 190, 190);
+      box-sizing: border-box;
+      /* transition: 1s .1s; */
+      transition-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+    }
+
+    .btn-span {
+      width: calc(50% - 8px);
+      height: calc(100% - 6px);
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      background-color: #fff;
+      box-shadow: 3px 3px 20px 1px rgba(190, 190, 190);
+    }
+
+    /*  check 变换  */
+    #checkbox-1:checked~label .btn-span {
+      left: calc(50% + 3px);
+      width: calc(50% - 3px);
+      height: calc(100% - 1px);
+      top: 0px;
+      box-shadow: 3px 3px 20px 1px #0008;
+    }
+
+    #checkbox-1:checked~label .bg-span {
+      /* background-color: rgba(48, 243, 77); */
+      border-width: 3px;
+      border-color: rgba(48, 243, 77);
+      /* 向内蔓延的效果 inset */
+      box-shadow: 0 0 0 60px rgba(48, 243, 77) inset;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="checkbox" name="ttt" id="checkbox-1">
+  <label for="checkbox-1"> <span class="bg-span"><span class="btn-span"></span></span>
+  </label>
+</body>
+
+</html>

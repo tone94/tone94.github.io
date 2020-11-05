@@ -1,0 +1,63 @@
+* {
+  /* background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 3px red; */
+  padding: 0;
+  margin: 0;
+}
+html{
+  xzoom: 1.5;
+  background-color: gray;
+}
+
+ul{
+  list-style: none;
+  background-color:#666;
+  color:#E2E2E2;
+} 
+
+.menu>li{
+  display: inline-block;
+  padding: 5px;
+  position: relative;
+}
+
+.menu>li>ul{
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+ul ul{ 
+  position: absolute;
+  top: -8px;
+  left: 100%;
+  background-color: #4F4F4F;
+} 
+
+ul ul li{
+  display: none;
+  position: relative;
+  padding: 0 10px;
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+ul>li:hover>ul>li{
+  display: block;
+}
+ul>li:hover > ul{
+  box-shadow: 0px 1px 5px 1px #000;
+}
+
+li:hover{
+  background-color: rgba(193,193,193,0.5);
+}
+
+/* 带子菜单标识 */
+ul ul ul:before{
+  content: ">";
+  position: absolute;
+  left: -12px;
+  margin: 8px 0;
+  display: block;
+}

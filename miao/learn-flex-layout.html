@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      display: flex;
+      display: inline-flex;
+
+      /* row/row-reverse column/reverse */
+      flex-direction: row;
+      /* wrap/wrap-reverse nowrap */
+      flex-wrap: nowrap;
+      /* Shorthand */
+      flex-flow: row-reverse wrap;
+
+      /* 行里的元素在交叉轴方向上的摆放 */
+      align-items: center;
+      /* 一行的元素在主轴上的摆放 */
+      justify-content: space-around;
+      /* 一行的元素在交叉轴上的摆放 */
+      align-content: flex-start;
+    }
+
+    div div {
+      /*  */
+      flex-grow: 1;
+      flex-shrink: 2;
+      flex-basis: 100px;
+      /* 自身在交叉轴上的摆放? */
+      align-self: stretch;
+      /* 显示顺序 */
+      order: 3;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div></div>
+  </div>
+</body>
+
+</html>

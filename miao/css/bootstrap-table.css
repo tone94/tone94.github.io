@@ -1,0 +1,110 @@
+table,tr,th,td{
+  /*th td 设置为hidden, tr边框也会消失 */
+  border: none;
+  border-collapse: collapse;
+  height: 24px;
+  text-align: left;
+}
+/* .table 下边框 */
+.table{
+  width: 100%;
+  margin: 0px;
+  padding: 0;
+}
+.table tr{
+  height: 50px;
+}
+
+.table td,.table th{
+  padding-left: 10px;
+}
+
+.table tr{
+  border-top:#DEE2E6 1px solid;
+}
+
+/* table-bordered 全边框 */
+.table-bordered td,
+.table-bordered tr,
+.table-bordered th{
+  border:#DEE2E6 1px solid;
+}
+
+/* table-borderless 单独使用没边框
+** 与 .table-bordered 一起使用有外边框
+*/
+.table-borderless td,
+.table-borderless th,
+.table-borderless tr{
+  border: none;
+}
+
+.table-bordered {
+  border: #DEE2E6 1px solid;
+}
+
+/* table-striped  */
+.table-striped tbody>tr:nth-child(odd){
+  background-color: #F2F2F2;
+}
+
+/* thead tr border-bottom */
+table:not([class ~= "table-borderless"]) th[scope="col"]{
+  border-bottom:#DEE2E6 2px solid;
+}
+table:not([class ~= "table"]) th[scope="col"]{
+  border-bottom:none;
+}
+
+/* table-hover */
+.table-hover tbody>tr:hover{
+  background: rgba(0,0,0,.075);
+}
+
+/* table-dark ----------- start */
+.table-dark tr{
+  background-color: #343A40;
+}
+
+.table-dark td,
+.table-dark th,
+.table-dark tr{
+  color: white;
+}
+
+.table-dark tr{
+  border-top:#454D55 1px solid;
+}
+
+.table-dark.table-bordered td,
+.table-dark.table-bordered th,
+.table-dark.table-bordered tr{
+  border:#454D55 1px solid;
+}
+
+.table-dark.table-borderless tr,
+.table-dark.table-borderless td,
+.table-dark.table-borderless th{
+  border: none;
+}
+
+table.table-dark.table-borderless[class~="table-bordered"] {
+  border: #454D55 1px solid;
+}
+
+.table-dark.table-striped tbody>tr:nth-child(odd){
+  background-color: #3E444A;
+}
+
+.table-dark.table-hover tbody tr:hover{
+  background: #43494E;
+}
+
+.table.table-dark:not([class ~= "table-borderless"]) th[scope="col"]{
+  border-bottom:#454D55 2px solid;
+}
+/* table-dark ----------- end */
+
+.table-sm.table tr{
+  height: 33px;
+}

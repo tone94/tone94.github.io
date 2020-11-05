@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>abs-center</title>
+  <style>
+    body {
+      margin: 0 80px;
+    }
+
+    h3 {
+      border: 3px dashed skyblue;
+      /* border-top: 4px dashed gray; */
+      padding: 20px;
+      width: 100%;
+      margin-top: 120px;
+    }
+
+    div div {
+      background-color: skyblue;
+    }
+
+    li {
+      list-style: square;
+    }
+
+    .wrapper {
+      border: 3px solid red;
+      margin-bottom: 30px;
+    }
+
+    /* inline-block abs-center */
+    .wrapper.inline-block {
+      height: 500px;
+      font-size: 0;
+    }
+
+    .wrapper.inline-block em {
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .wrapper.inline-block div {
+      font-size: initial;
+      display: inline-block;
+      vertical-align: middle;
+      width: 200px;
+      margin-left: calc(50% - 100px);
+    }
+
+    /* position abs-center */
+    .wrapper.position {
+      position: relative;
+      height: 100px;
+    }
+
+    .wrapper.position div {
+      width: 100px;
+      height: 200px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    /* table abs-center (block-element) */
+    .wrapper.table {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      /* ---- */
+      width: 500px;
+      height: 500px;
+    }
+
+    .wrapper.table div {
+      margin-left: auto;
+      margin-right: auto;
+      width: 90px;
+    }
+
+    /* flex */
+    .wrapper.flex {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+      /* ---- */
+      width: 200px;
+      margin-left: 500px;
+      background-color: skyblue;
+    }
+
+    .wrapper.flex div {
+      width: 500px;
+      /* ---- */
+      height: 600px;
+      flex-shrink: 0;
+      border: 3px solid red;
+      background-color: transparent;
+    }
+
+    /* 2d transition + position  */
+    .wrapper.transition {
+      position: relative;
+      /* --- */
+      margin: 200px 0;
+    }
+
+    .wrapper.transition div {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>5种绝对居中方案</h1>
+  <p>块元素不定宽高, 由子元素撑开</p>
+  <h3>inline-block / 行内块元素居中</h3>
+  <ul>
+    <li>子元素定宽,计算margin-left来实现水平居中</li>
+    <li>父元素设置高度,利用伪元素100%撑起高度,vertical-align:middle实现垂直居中</li>
+    <li>font-size:0;</li>
+  </ul>
+  <div class="wrapper inline-block">
+    <em></em>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut vitae quos nobis, amet ea quasi facere soluta unde
+      esse voluptatem in illo recusandae. Officiis amet aspernatur eius minus ipsa nam quibusdam exercitationem
+      dignissimos, pariatur magnam, voluptatum eaque ut quas corrupti harum aut, autem reprehenderit ab libero commodi
+      porro consequuntur illo!</div>
+  </div>
+  <h3>position + margin auto / 绝对定位+margin auto</h3>
+  <ul>
+    <li>子元素要定宽高,不定则撑满父元素</li>
+    <li>子元素不能比父元素宽,可以比它高</li>
+    <li>绝对定位脱离常规流, 所以父元素需要定高</li>
+  </ul>
+  <div class="wrapper position">
+    <div>2222</div>
+  </div>
+  <h3>table-cell / 表格居中</h3>
+  <ul>
+    <li>表格提供了方便的垂直方向居中vertical-align:middle;</li>
+    <li>子元素不能超出父元素,父元素会尽可能大来包住子元素</li>
+  </ul>
+  <div class="wrapper table">
+    <div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates fugiat ipsa. A id eligendi minus
+        dolorem saepe ipsam quas.</p>
+    </div>
+  </div>
+
+  <h3>flex 居中</h3>
+  <ul>
+    <li>父元素需要设置为flex-container
+      <ul>
+        <li>display:flex;</li>
+        <li>justify-content: center;</li>
+        <li>align-items: center;</li>
+      </ul>
+    </li>
+    <li>父元素要定高, 子元素要定宽</li>
+    <li>子元素可以比父元素大</li>
+  </ul>
+  <div class="wrapper flex">
+    <div>
+      这是flex-items
+    </div>
+  </div>
+
+  <h3>2d Transition + Position / 2d变换+定位</h3>
+  <ul>
+    <li>父子元素可以不定宽高</li>
+    <li>子元素可以比父元素大(超出)</li>
+    <li>水平垂直方向都能居中</li>
+  </ul>
+  <div class="wrapper transition">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis veniam velit, placeat qui facere, inventore numquam
+    architecto f
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis voluptatibus quia, atque ratione rem impedit?
+      Eaque, repellat sequi consequuntur, ullam perspiciatis voluptatum aperiam vero iure quia alias praesentium vel
+      ad veniam? Consequuntur excepturi odit facere soluta dignissimos harum rem, sequi blanditiis saepe aspernatur
+      vitae recusandae molestiae, sit esse tempora assumenda iusto corrupti nulla non! Accusantium minima recusandae
+      asperiores. Hic beatae illum cum, eligendi voluptates expedita. Quo pariatur voluptas accusamus ullam incidunt,
+      corporis, consequatur quod nesciunt nostrum earum tenetur dolores expedita illum temporibus beatae commodi modi.
+      Ea obcaecati minima iusto similique labore eos expedita libero explicabo, blanditiis veniam ex impedit dolore?
+    </div>
+  </div>
+</body>
+
+</html>

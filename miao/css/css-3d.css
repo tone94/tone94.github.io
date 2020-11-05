@@ -1,0 +1,87 @@
+div{
+  --offset-positive:100px;
+  --offset-negative:-100px;
+}
+
+section{
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  margin-top: 25vh;
+  transform-style:preserve-3d;
+  animation:roll 5s infinite linear;
+  xtransform: rotatex(-90deg);
+  border: 1px solid red;
+}
+
+div{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  font-size: 30px;
+  text-align: center;
+  line-height: 100px;
+  box-shadow: 0 0 0 0px rgba(0,0,0,0.1);
+  transition: box-shadow 2s;
+}
+
+
+section:hover div{
+  box-shadow: 0 0 0 50px rgba(0,0,0,0.1);
+}
+
+@keyframes roll{
+  from{
+    transform:perspective(800px) 
+      rotateY(0deg)  rotateX(0deg);
+  }to{
+    transform:perspective(800px) 
+      rotateY(360deg) rotateX(360deg);
+  }
+}
+/* 画方块 */
+.d1{
+  background-color: pink;
+  transform:translateZ(var(--offset-positive)) ;
+}
+
+.d2{
+  background-color: white;
+  transform:translateZ(var(--offset-negative)) rotateY(180deg);
+}
+
+.d3{
+  background-color: yellow;
+  transform:translateX(-50%) rotateY(-90deg);
+}
+
+.d4{
+  background-color: tan;
+  transform:translateX(50%) rotateY(90deg);
+}
+
+.d5{
+  background-color: blue;
+  transform:translateY(-50%) rotateX(90deg);
+}
+
+.d6{
+  background-color:red;
+  transform:translateY(50%) rotateX(-90deg);
+}
+
+table{
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+
+td{
+  border:1px solid red;
+}

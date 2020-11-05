@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bootstrap-input.box-use.table.layout</title>
+  <style>
+    div {
+      display: table;
+      color: rgba(73, 80, 87);
+      border-collapse: collapse;
+    }
+
+    input,
+    span {
+      display: table-cell;
+      border: 1px solid #CED4DA;
+    }
+
+    input {
+      /* input框高度要大于span行高框高度,才能撑起来 */
+      height: 30px;
+      /* input框默认font-size 13.333 */
+      font-size: 16px;
+      border-radius: 0 4px 4px 0;
+      padding: 0 8px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: rgba(128, 189, 255);
+      box-shadow: 0px 0px 0px 2px rgba(69, 146, 230, 0.3);
+    }
+
+    span {
+      padding: 0 5px;
+      background-color: #E9ECEF;
+      border-radius: 4px 0 0 4px;
+      /* ? 为啥collapse不生效 */
+      border-right: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <span>name</span>
+    <input type="text">
+  </div>
+</body>
+
+</html>

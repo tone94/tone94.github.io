@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>td:hover行列同时高亮</title>
+  <style>
+    html {
+      zoom: 1.5;
+    }
+
+    table {
+      border-collapse: collapse;
+      overflow: hidden;
+    }
+
+    td {
+      border: 1px solid;
+    }
+
+    tr:hover {
+      background-color: red;
+    }
+
+    td {
+      position: relative;
+    }
+
+    /* td里面加个元素,通过相对td绝对定位,top,bottom设置负值让他高度撑起来,超出部分table overflow:hidden */
+    /* 因为td层级高,bg-c会覆盖掉之前的元素,所以设置z-index */
+    /* 10.20.11点 video  通过伪元素来实现*/
+    td:hover span {
+      position: absolute;
+      background-color: red;
+      width: 100%;
+      top: -999px;
+      bottom: -999px;
+      left: 0;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <colgroup>
+      <col>
+      <col>
+      <col>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+      <tr>
+        <td>001<span></span></td>
+        <td>002<span></span></td>
+        <td>003<span></span></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

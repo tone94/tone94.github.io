@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    /* 表格列,行优先级低于单元格 */
+    /* 鼠标移动到中线会切换hover对象 */
+    tr,
+    col {
+      border: 5px solid blue;
+    }
+
+    td {
+      height: 50px;
+      width: 50px;
+    }
+
+    td:hover {
+      border: 5px solid red;
+    }
+
+    div.wrapper {
+      width: 200px;
+      height: 200px;
+      font-size: 0;
+      box-sizing: border-box;
+    }
+
+    .wrapper div {
+      position: relative;
+      text-align: center;
+      font-size: initial;
+      width: 30%;
+      height: 30%;
+      margin-left: -5px;
+      margin-top: -5px;
+      display: inline-block;
+      box-sizing: border-box;
+      border: blue 5px solid;
+    }
+
+    .wrapper div:hover {
+      border-color: red;
+      z-index: 100;
+    }
+
+    .wrapper div em {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 0;
+      height: 100%;
+
+    }
+
+    ul {
+      position: relative;
+      list-style: none;
+      width: 200px;
+      height: 200px;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      position: absolute;
+      text-align: center;
+      width: 30%;
+      height: 30%;
+      background-color: rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+      border: blue 5px solid;
+    }
+
+    li:nth-child(3n+2) {
+      left: calc(30% - 5px);
+    }
+
+    li:nth-child(3n+3) {
+      left: calc(60% - 10px);
+    }
+
+    li:nth-child(n+4) {
+      top: calc(30% - 5px);
+    }
+
+    li:nth-child(n+7) {
+      top: calc(60% - 10px);
+    }
+
+    li:hover {
+      border-color: red;
+      z-index: 100;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>table 9-grid</h3>
+  <table>
+    <colgroup>
+      <col>
+      <col>
+      <col>
+    </colgroup>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </table>
+
+  <h3>inline-block-element 9-grid</h3>
+  <div class="wrapper">
+    <div><em></em>1</div>
+    <div><em></em>2</div>
+    <div><em></em>3</div>
+    <div><em></em>4</div>
+    <div><em></em>5</div>
+    <div><em></em>6</div>
+    <div><em></em>7</div>
+    <div><em></em>8</div>
+    <div><em></em>9</div>
+  </div>
+
+  <h3>posotion 9-grid</h3>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+  </ul>
+
+</body>
+
+</html>

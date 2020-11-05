@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      padding-left: 10px;
+      border: 1px solid red;
+    }
+
+    /* dd 折行垂直对齐 */
+    /* 1.给dl设置 padding-left:45px;
+       2.dt相对dl定位, left:-45px;
+       3.dt跟着的第一个 dd, margin-left:-45px;
+       */
+    dl {
+      padding-left: 45px;
+      display: flow-root;
+      min-width: 60px;
+    }
+
+    dd {
+      float: left;
+      margin: 0 10px 0 0;
+    }
+
+    dt+dd {
+      margin-left: -45px;
+    }
+
+    dt {
+      float: left;
+      clear: both;
+      width: 45px;
+      position: relative;
+      left: -45px;
+    }
+
+    /* 直接float:left */
+    /* dl {
+      min-width: 60px;
+      display: flow-root;
+    }
+
+    dd {
+      float: left;
+      margin: 0 10px 0 0;
+    }
+
+    dt {
+      float: left;
+      clear: both;
+    } */
+  </style>
+</head>
+
+<body>
+  <dl>
+    <dt>导演 :</dt>
+    <dd>00001</dd>
+    <dd>00002</dd>
+    <dd>003</dd>
+    <dd>00004</dd>
+    <dd>0005</dd>
+    <dt>主演 :</dt>
+    <dd>00001</dd>
+    <dd>00002</dd>
+    <dd>03</dd>
+    <dd>00004</dd>
+    <dd>00005</dd>
+    <dt>编剧 :</dt>
+    <dd>00001</dd>
+    <dd>00002</dd>
+    <dd>003</dd>
+    <dd>0000004</dd>
+    <dd>00005</dd>
+  </dl>
+</body>
+
+</html>

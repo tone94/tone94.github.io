@@ -1,0 +1,75 @@
+body,article,section,header,p,h1,pre{
+  margin: 0;
+  padding: 0;
+}
+
+p,h1{
+  font-family: Arial, sans-serif;
+}
+
+pre{
+  margin-top: 14px;
+  margin-left: 10px;
+}
+
+body{
+  background-color: white;
+  background-image: url("https://meyerweb.com/eric/css/edge/complexspiral/glassy-bg.jpg");
+}
+
+article,body,h1,.at{
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+article{
+  margin: 80px 80px 160px;
+  width: auto;
+  border: 3px solid rgb(153,102,51);
+  background-color: rgb(255,255,255,0.5);
+  background-image: url(https://meyerweb.com/eric/css/edge/complexspiral/glassy-ripple.jpg);
+}
+
+section{
+  margin-top: 15px;
+}
+section:last-child>ul,
+section:last-child>b{
+  margin-left:  10px;
+}
+.at{
+  background-color: rgb(0, 0, 0,0.2);
+  border: 1px solid gray;
+  height: 66px;
+  margin: 26px 6px 0;
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 0.5em;
+  color: #002244;
+  background-image: url(https://meyerweb.com/eric/css/edge/complexspiral/glassy-gray.jpg);
+}
+
+.at span{
+  display: inline-block;
+  margin-top: 16px;
+  margin-left: 32px;
+}
+
+h1{
+  line-height: 32px;
+  background-color: #CBB196;
+  border: 1px solid rgb(153,102,51);
+  font-weight: 600;
+  font-size: 24px;
+  padding: 10px 12px;
+  color: white;
+  margin-left: -3px;
+  margin-right: -3px;
+  background-image: url(https://meyerweb.com/eric/css/edge/complexspiral/glassy-tan.jpg);
+}
+
+p{
+  line-height: 1.3em;;
+  margin: 16px 30px 0 26px;
+}

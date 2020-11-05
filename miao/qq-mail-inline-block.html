@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      font-size: 0;
+    }
+
+    .d1,
+    .d2,
+    .d3 {
+      display: inline-block;
+      font-size: initial;
+    }
+
+    .d1 {
+      height: 65px;
+      width: 100%;
+      border-bottom: 2px solid #000;
+      /* 基线对齐会和后面的元素产生空隙 */
+      vertical-align: top;
+    }
+
+    .d2 {
+      width: 190px;
+      height: calc(100vh - 67px);
+      border-right: 2px solid #000;
+      /* 内容区对齐方式会影响inline-block布局(内容区高度不一定一致),
+      高度相同的block元素top对齐和bottom对齐是一样的效果 */
+      vertical-align: top;
+    }
+
+    .d3 {
+      height: calc(100vh - 67px);
+      width: calc(100% - 192px);
+      background-color: red;
+      overflow: scroll;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="d1"></div>
+  <div class="d2">lorem6</div>
+  <div class="d3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, officia harum labore sunt eligendi
+    incidunt quae animi? Omnis, sequi perspiciatis facilis quod rem incidunt voluptatum facere repellendus corrupti eius
+    harum maiores molestiae iste ipsa fugiat quae cum excepturi dolore esse repudiandae modi earum. Nihil veniam ipsa
+  </div>
+</body>
+
+</html>

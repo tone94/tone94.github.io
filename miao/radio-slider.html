@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .slider {
+      position: relative;
+      border: #000 10px solid;
+      width: 600px;
+      height: 422px;
+      overflow: hidden;
+    }
+
+    img {
+      position: absolute;
+      left: 100%;
+      bottom: 0;
+      transition: left 1s;
+    }
+
+    input:nth-child(1):checked~.dimg img:nth-child(1),
+    input:nth-child(2):checked~.dimg img:nth-child(2),
+    input:nth-child(3):checked~.dimg img:nth-child(3),
+    input:nth-child(4):checked~.dimg img:nth-child(4) {
+      left: 0;
+      z-index: 8;
+    }
+
+    input:nth-child(1):checked~.label-wrapp>#img1,
+    input:nth-child(2):checked~.label-wrapp>#img2,
+    input:nth-child(3):checked~.label-wrapp>#img3,
+    input:nth-child(4):checked~.label-wrapp>#img4 {
+      display: block;
+    }
+
+    .lb-tab {
+      position: absolute;
+      display: none;
+      width: 600px;
+      height: 400px;
+      z-index: 999;
+    }
+
+    /* label icon */
+    div.lb {
+      background-image: url(img/icon-slides.png);
+      width: 40px;
+      height: 69px;
+      position: absolute;
+    }
+
+    .lb-left {
+      background-position: 0px 0px;
+      left: 0;
+      bottom: 40%;
+    }
+
+    .lb-right {
+      background-position: -42px -0px;
+      right: 0;
+      bottom: 40%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <input type="radio" name="slider" id="slider1" checked="checked">
+    <input type="radio" name="slider" id="slider2">
+    <input type="radio" name="slider" id="slider3">
+    <input type="radio" name="slider" id="slider4">
+    <div class="dimg">
+      <img src="https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/1.jpg" alt="img">
+      <img src="https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/2.jpg" alt="img">
+      <img src="https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/3.jpg" alt="img">
+      <img src="https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/4.jpg" alt="img">
+    </div>
+    <div class="label-wrapp">
+      <div class="lb-tab" id="img1" style="display: block;">
+        <label for="slider4">
+          <div class="lb lb-left"></div>
+        </label>
+        <label for="slider2">
+          <div class="lb lb-right"></div>
+        </label>
+      </div>
+      <div class="lb-tab" id="img2">
+        <label for="slider1">
+          <div class="lb lb-left"></div>
+        </label>
+        <label for="slider3">
+          <div class="lb lb-right"></div>
+        </label>
+      </div>
+      <div class="lb-tab" id="img3">
+        <label for="slider2">
+          <div class="lb lb-left"></div>
+        </label>
+        <label for="slider4">
+          <div class="lb lb-right"></div>
+        </label>
+      </div>
+      <div class="lb-tab" id="img4">
+        <label for="slider3">
+          <div class="lb lb-left"></div>
+        </label>
+        <label for="slider1">
+          <div class="lb lb-right"></div>
+        </label>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

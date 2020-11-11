@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/learn-animation.css">
+  <style>
+    .revolution div {
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      animation: s 4s infinite steps(3600);
+      border: 1px solid red;
+    }
+
+    .revolution {
+      margin: 300px auto;
+      animation: p 4s infinite steps(3600);
+      width: 400px;
+      height: 20px;
+      border: 1px solid red;
+      ;
+    }
+
+    @keyframes p {
+      from {
+        transform: rotate(0);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes s {
+      from {
+        transform: rotate(-0deg);
+      }
+
+      to {
+        transform: rotate(-360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h3>css实现时钟</h3>
+
+  <div class="clock">
+    <span class="center"></span>
+    <span class="hour"></span>
+    <span class="min"></span>
+    <span class="sec"></span>
+    <div>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+
+  <br>
+  <h3>实现元素公转但不自转</h3>
+  <li>父元素每转 1deg,子元素转-1deg</li>
+  <section class="revolution">
+    <div>1</div>
+  </section>
+</body>
+
+</html>

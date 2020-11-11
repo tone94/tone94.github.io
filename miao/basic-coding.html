@@ -405,6 +405,7 @@
   </script>
 
   <!-------------------  105  -------------------->
+  <!-- while for -->
   <script type="norun" id="ch0105/01">
     var count = Number(prompt('人数:'))
     var i = count
@@ -485,36 +486,97 @@
   </script>
 
   <script type="norun" id="ch0105/07">
+    var count = Number(prompt('参赛天数:'))
+    var i = count
+    var s1 = 0
+    var s2 = 0
+    var s3 = 0
 
+    while (i > 0) {
+      var a = Number(prompt('第' + i + '天 金牌:'))
+      var b = Number(prompt('第' + i + '天 银牌:'))
+      var c = Number(prompt('第' + i + '天 铜牌:'))
+      s1 += a
+      s2 += b
+      s3 += c
+      i--
+    }
+    console.log(s1 + " " + s2 + " " + s3 + " " + (s1 + s2 + s3))
 
   </script>
 
   <script type="norun" id="ch0105/08">
-
-
+    var n = Number(prompt('几个边:'))
+    var sum = 0
+    for (var i = n - 1; i > 0; i--) {
+      sum += Number(prompt('内角值:'))
+    }
+    console.log((n - 2) * 180 - sum)
   </script>
 
   <script type="norun" id="ch0105/09">
-
-
+    var n = Number(prompt('n:'))
+    var m = Number(prompt('m:'))
+    var i = n
+    var sum = 0
+    for (i; i <= m; i++) {
+      if (i % 2 != 0) {
+        sum += i
+      }
+    }
+    console.log(sum)
   </script>
 
   <script type="norun" id="ch0105/10">
-
+    var n = Number(prompt('n:'))
+    var m = Number(prompt('m:'))
+    var i = n
+    var sum = 0
+    for (i; i <= m; i++) {
+      if (i % 17 == 0) {
+        sum += i
+      }
+    }
+    console.log(sum)
 
   </script>
 
   <script type="norun" id="ch0105/11">
-
-
+    var k = Number(prompt('k : '))
+    var a = 0
+    var b = 0
+    var c = 0
+    for (var i = 0; i < k; i++) {
+      var num = Number(prompt('num'))
+      if (num == 1) {
+        a++
+      }
+      if (num == 5) {
+        b++
+      }
+      if (num == 10) {
+        c++
+      }
+    }
+    console.log(a + '\n' + b + '\n' + c)
   </script>
 
   <script type="norun" id="ch0105/12">
+    var n = Number(prompt('n : '))
+    var m = Number(prompt('m : '))
+    var count = 0
+    for (var i = 0; i < n; i++) {
+      var num = Number(prompt('num'))
+      if (num == m) {
+        count++
+      }
 
+    }
+    console.log(count)
 
   </script>
 
-  <script type="norun" id="ch0105/13">
+  <script xtype="norun" id="ch0105/13">
 
 
   </script>

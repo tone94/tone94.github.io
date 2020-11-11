@@ -24,7 +24,7 @@
     var a = Number(prompt('a:'))
     var b = Number(prompt('b:'))
     var c = Number(prompt('c:'))
-    console.log(((a + b) / c).toFixed(0))
+    console.log(parseInt((a + b) / c))
   </script>
 
   <script type="norun" id="ch0103/04">
@@ -70,8 +70,8 @@
   <script type="norun" id="ch0103/09">
     var r = Number(prompt('半径:'))
     var diameter = (r * 2).toFixed(4)
-    var perimeter = (2 * Math.PI * r).toFixed(4)
-    var radius = (Math.PI * r * r).toFixed(4)
+    var perimeter = (2 * 3.14159 * r).toFixed(4)
+    var radius = (3.14159 * r * r).toFixed(4)
     console.log(diameter)
     console.log(perimeter)
     console.log(radius)
@@ -187,7 +187,8 @@
   <!-------------------  104  -------------------->
   <script type="norun" id="ch0104/01">
     var n = Number(prompt('n:'))
-    console.log(n < 0 ? 'negative' : (n == 0 ? 'zero' : 'positive'))
+    var res = n < 0 ? "negative" : (n == 0 ? "zero" : "positive")
+    console.log(res)
   </script>
 
   <script type="norun" id="ch0104/02">

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>画图</title>
+  <style>
+    canvas {
+      border: 2px solid #f0f;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas width="400" height="300"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('canvas')
+  canvas.style.imageRendering = 'pixelated'
+  var ctx = canvas.getContext('2d')
+
+  function dot(x, y, color = 'black') {
+    x = x | 0
+    y = y | 0
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, 1, 1)
+  }
+
+  function line(x1, y1, x2, y2) {
+    ctx.strokeStyle = 'black'
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.stroke()
+  }
+</script>
+<script>
+  // YOUR CODE GOES BELO
+  // 画一条实线
+  line(10, 10, 100, 10)
+  // 画一条一个实点一个空点的虚线
+  var y = 10
+  for (var x = 3; x < 300; x += 3) {
+    dot(x, y)
+  }
+  // 画一条两个实点两个空点的虚线
+  var y = 10
+  for (var x = 3; x < 300; x += 3) {
+    dot(x, y)
+    dot(x, y)
+  }
+  // 画一条三个实点两个空点的虚线
+
+  // 画一条45度的斜线
+
+  // 画一条30度的斜线（选做）
+
+  // 在四个角画分别画一条45度的斜线以让画面看起来像一个相框
+  line(100, 0, 0, 100)
+  line(300, 0, 400, 100)
+  line(400, 200, 200, 400)
+  line(200, 400, 0, 200)
+  // 画一条跨越画布左上角和右下角的对角线
+  line(0, 0, 400, 300)
+  // 画一个空心矩形
+  ctx.strokeRect(100, 100, 200, 100)
+  // 画一个实心矩形
+  ctx.fillRect(100, 100, 200, 100)
+  // 画一个rgb色彩空间的某一面
+
+  // 画一个空心的圆
+  ctx.beginPath()
+  ctx.arc(50, 50, 50, 0, 7)
+  ctx.stroke()
+  // 画一个实心的圆
+  ctx.beginPath()
+  ctx.arc(50, 50, 50, 0, 7)
+  ctx.fillStyle = "red"
+  ctx.fill()
+  // 画一个大小合适的sin(x)的图像
+
+</script>
+
+</html>

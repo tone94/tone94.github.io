@@ -594,54 +594,166 @@
     console.log(x.toFixed(4))
   </script>
 
-  <script xtype="norun" id="ch0105/15">
-
+  <script type="norun" id="ch0105/15">
+    var r = Number(prompt('r : '))
+    var m = Number(prompt('m : '))
+    var y = Number(prompt('y : '))
+    for (var i = 0; i < y; i++) {
+      m += m * r / 100
+    }
+    console.log(Math.floor(m))
 
   </script>
 
   <script type="norun" id="ch0105/16">
-
-
+    var n = Number(prompt('n : '))
+    var k = Number(prompt('k : '))
+    var price = 200
+    var deposit = n
+    var y = 1
+    while (deposit < price) {
+      price += price * k / 100
+      deposit += n
+      y++;
+    }
+    console.log(y)
   </script>
 
   <script type="norun" id="ch0105/17">
-
+    var n = Number(prompt('n : '))
+    var a = 1
+    var b = 1
+    var c = 0
+    for (var i = 3; i <= n; i++) {
+      c = a + b
+      a = b
+      b = c
+    }
+    console.log(c)
 
   </script>
 
   <script type="norun" id="ch0105/18">
-
-
+    var n = Number(prompt('n : '))
+    var flag = true;
+    var oldRate = 0
+    for (var i = 0; i < n; i++) {
+      var total = Number(prompt('total : '))
+      var cure = Number(prompt('cure : '))
+      var rate = cure / total * 100
+      if (flag) {
+        oldRate = rate
+        flag = false
+        continue
+      }
+      if (rate - oldRate > 5) {
+        console.log("better")
+      } else if (oldRate - rate > 5) {
+        console.log("worse")
+      } else {
+        console.log("same")
+      }
+    }
   </script>
 
   <script type="norun" id="ch0105/19">
-
-
+    var n = Number(prompt('n : '))
+    var time = 0
+    for (var i = 0; i < n; i++) {
+      var x = Number(prompt('x : '))
+      var y = Number(prompt('y : '))
+      var num = Number(prompt('num : '))
+      var distance = Math.sqrt(x * x + y * y)
+      time += distance / 50 * 2 + 1.5 * num
+    }
+    console.log(Math.ceil(time))
   </script>
 
   <script type="norun" id="ch0105/20">
-
-
+    var n = Number(prompt('n : '))
+    var total = 2 * n //?????
+    for (var i = 0; i < 10; i++) {
+      n /= 2
+      total += n
+    }
+    console.log(total)
+    console.log(n)
   </script>
 
   <script type="norun" id="ch0105/21">
-
+    var n = Number(prompt('n : '))
+    var flag = true
+    var tmp = 0
+    while (flag) {
+      if (n % 2 != 0) {
+        tmp = n * 3 + 1
+        console.log(n + "*3+1=" + tmp)
+      }
+      if (n % 2 == 0) {
+        tmp = n / 2
+        console.log(n + "/2=" + tmp)
+      }
+      if (tmp == 1) {
+        flag = false
+        console.log("End")
+      }
+      n = tmp
+    }
 
   </script>
 
   <script type="norun" id="ch0105/22">
-
-
+    var deposit = 0
+    var balance = 0
+    var flag = true
+    for (var i = 1; i <= 12; i++) {
+      var budget = Number(prompt(i+' 月 budget :'))
+      var tmp = 300 - budget + balance
+      if (tmp < 0) {
+        balance = 0
+        console.log(-i)
+        flag = false
+        break
+      }
+      var m = tmp % 100
+      deposit += tmp - m
+      balance = m
+    }
+    if (flag) {
+      console.log(deposit * 1.2 + m)
+    }
   </script>
 
   <script type="norun" id="ch0105/23">
-
-
+    var total = Number(prompt('total : '))
+    var num = Number(prompt('num : '))
+    var tmp = total
+    var notget = 0
+    for (var i = 0; i < num; i++) {
+      var count = Number(prompt('count : '))
+      if (tmp < count) {
+        notget++
+        continue
+      } else {
+        tmp -= count
+      }
+    }
+    console.log(notget)
   </script>
 
   <script type="norun" id="ch0105/24">
-
-
+    var n = Number(prompt('n : '))
+    var time = 0
+    for (var i = 0; i < n; i++) {
+      var x = Number(prompt('x : '))
+      var y = Number(prompt('y : '))
+      if (x >= 90 & x <= 140 & y >= 60 & y <= 90) {
+        time++
+      } else {
+        time = 0
+      }
+    }
+    console.log(time)
   </script>
 
   <script type="norun" id="ch0105/25">
@@ -650,18 +762,33 @@
   </script>
 
   <script type="norun" id="ch0105/26">
-
-
+    var n = Number(prompt('n : '))
+    var time = 0
+    for (var i = 0; i < n; i++) {
+      var num = Number(prompt('num : '))
+      var ge = Math.floor(num % 1000 % 100 % 10)
+      var shi = Math.floor(num % 1000 % 100 / 10)
+      var bai = Math.floor(num % 1000 / 100)
+      var qian = Math.floor(num / 1000)
+      if (ge - shi - bai - qian > 0) {
+        time++
+      }
+    }
+    console.log(time)
   </script>
 
   <script type="norun" id="ch0105/27">
-
-
+    var n = Number(prompt('n : '))
+    var i = 0
+    var sn = 0
+    while (sn <= n) {
+      i++
+      sn += 1 / i
+    }
+    console.log(i)
   </script>
 
-  <script type="norun" id="ch0105/28">
-
-
+  <script xtype="norun" id="ch0105/28">
   </script>
 
   <script type="norun" id="ch0105/29">

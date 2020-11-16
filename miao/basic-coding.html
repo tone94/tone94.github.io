@@ -744,16 +744,20 @@
   <script type="norun" id="ch0105/24">
     var n = Number(prompt('n : '))
     var time = 0
+    var max = 0
     for (var i = 0; i < n; i++) {
       var x = Number(prompt('x : '))
       var y = Number(prompt('y : '))
-      if (x >= 90 & x <= 140 & y >= 60 & y <= 90) {
+      if (x >= 90 && x <= 140 && y >= 60 && y <= 90) {
         time++
+        if (time > max) {
+          max = time
+        }
       } else {
         time = 0
       }
     }
-    console.log(time)
+    console.log(max)
   </script>
 
   <script type="norun" id="ch0105/25">
@@ -788,35 +792,105 @@
     console.log(i)
   </script>
 
-  <script xtype="norun" id="ch0105/28">
+  <script type="norun" id="ch0105/28">
+    var n = prompt('n : ')
+    var len = n.length
+    var result = 0
+    var tmp = 0
+    for (var i = 0; i < len; i++) {
+      result = (n - tmp) / Math.pow(10, i) % 10
+      tmp += result * Math.pow(10, i)
+      console.log(result)
+    }
   </script>
 
   <script type="norun" id="ch0105/29">
-
-
+    var n = prompt('n : ')
+    var len
+    var flag = true
+    if (n >= 0) {
+      len = n.length
+    } else {
+      len = n.length - 1
+      flag = false
+    }
+    n = Math.abs(n)
+    var tmp = 0
+    var res = ''
+    for (var i = 0; i < len; i++) {
+      var bit = (n - tmp) / Math.pow(10, i) % 10
+      tmp += bit * Math.pow(10, i)
+      res += bit
+    }
+    if (flag) {
+      console.log(Number(res))
+    } else {
+      console.log('-' + Number(res))
+    }
   </script>
 
   <script type="norun" id="ch0105/30">
+    var n = prompt('n : ')
+    var m = prompt('m : ')
+    var len = n.length
+    var tmp = 0
+    var k = 0
+    for (var i = 0; i < len; i++) {
+      var result = (n - tmp) / Math.pow(10, i) % 10
+      tmp += result * Math.pow(10, i)
+      if (result == 3) {
+        k++
+      }
+    }
 
+    if (k == m && n % 19 == 0) {
+      console.log('YES')
+    } else {
+      console.log('NO')
+    }
 
   </script>
 
   <script type="norun" id="ch0105/31">
-
-
+    var n = prompt('n : ')
+    var m = prompt('m : ')
+    for (var i = 1; i <= n; i++) {
+      var flag = i % 2 == 0 // 初始状态
+      for (var j = 3; j <= m; j++) {
+        if (i % j == 0) {
+          flag = !flag
+        }
+      }
+      if (!flag) {
+        console.log(i)
+      }
+    }
   </script>
 
   <script type="norun" id="ch0105/32">
-
-
+    var n = prompt('n : ')
+    var res = 0.0
+    var numerator = 2 //分子
+    var denominator = 1 //分母
+    for (var i = 0; i < n; i++) {
+      res += numerator / denominator
+      var tmp = numerator
+      numerator += denominator
+      denominator = tmp
+    }
+    console.log(res.toFixed(4))
   </script>
 
   <script type="norun" id="ch0105/33">
-
-
+    var n = prompt('n : ')
+    var res = 0.0
+    for (var i = 1; i <= n; i++) {
+      res += 1 / i * Math.pow(-1, i - 1)
+    }
+    console.log(res.toFixed(4))
   </script>
 
-  <script type="norun" id="ch0105/34">
+  <script xtype="norun" id="ch0105/34">
 
 
   </script>

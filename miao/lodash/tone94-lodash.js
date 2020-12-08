@@ -119,7 +119,7 @@ var tone94 = function () {
     Object.keys(obj).forEach(function (name) {
       var item = []
       item.push(name)
-      item.push(obj.name)
+      item.push(obj[name])
       result.push(item)
     })
     return result
@@ -135,6 +135,37 @@ var tone94 = function () {
     }
     return result
   }
+
+  function toArray(val) {
+    var result = []
+    for (var item in val) {
+      result.push(val[item])
+    }
+    return result
+  }
+
+  function flatten(ary) {
+    var result = []
+    var i = 0
+    while (i < ary.length) {
+      var flag = true
+      for (var item in ary[i]) {
+        result.push(ary[i][item])
+        if (flag) flag = false
+      }
+      if (flag) result.push(ary[i])
+      i++
+    }
+    return result
+  }
+
+  // function flattenDeep(ary) {
+
+  // }
+
+  // function flattenDepth(ary, depth = 1) {
+
+  // }
 
   // function sortedIndex(ary, val) {
 
@@ -160,7 +191,8 @@ var tone94 = function () {
     fromPairs,
     toPairs,
     reverse,
-
+    toArray,
+    flatten,
   }
 
 }()

@@ -136,13 +136,13 @@ var tone94 = function () {
     return result
   }
 
-  function sortedIndex(ary, val) {
+  // function sortedIndex(ary, val) {
 
-  }
+  // }
 
-  function find(collection, predicate = 0, fromIndex = 0) {
+  // function find(collection, predicate = 0, fromIndex = 0) {
 
-  }
+  // }
 
   // 返回一个对象
   return {

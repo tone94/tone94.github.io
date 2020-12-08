@@ -57,6 +57,93 @@ var tone94 = function () {
     return result
   }
 
+  function drop(ary, n = 1) {
+    var result = []
+    for (var i = n; i < ary.length; i++) {
+      result.push(ary[i])
+    }
+    return result
+  }
+
+  function dropRight(ary, n = 1) {
+    var result = []
+    for (var i = 0; i < ary.length - n; i++) {
+      result.push(ary[i])
+    }
+    return result
+  }
+
+  function fill(ary, val, start = 0, end = ary.length) {
+    var result = ary
+    for (var i = start; i < end && i < ary.length; i++) {
+      result[i] = val
+    }
+    return result
+  }
+
+  function indexOf(ary, val, fromIndex = 0) {
+    for (var i = fromIndex; i < ary.length; i++) {
+      if (ary[i] === val) {
+        return i
+      }
+    }
+    return -1
+  }
+
+  function initial(ary) {
+    // pop()
+    var result = []
+    for (var i = 0; i < ary.length - 1; i++) {
+      result.push(ary[i])
+    }
+    return result
+  }
+
+  function head(ary) {
+    if (!ary.length) return undefined
+    return ary[0]
+  }
+
+  // input ary return obj
+  function fromPairs(pairs) {
+    var result = {}
+    for (var i = 0; i < pairs.length; i++) {
+      result[pairs[i][0]] = pairs[i][1]
+    }
+    return result
+  }
+
+  // input obj return ary 只返回本身的属性
+  function toPairs(obj) {
+    var result = []
+    Object.keys(obj).forEach(function (name) {
+      var item = []
+      item.push(name)
+      item.push(obj.name)
+      result.push(item)
+    })
+    return result
+  }
+
+  function reverse(ary) {
+    var result = ary
+    var tmp, mid = (result.length - (result.length % 2)) / 2
+    for (var i = 0; i < mid; i++) {
+      tmp = result[i]
+      result[i] = result[result.length - 1 - i]
+      result[result.length - 1 - i] = tmp
+    }
+    return result
+  }
+
+  function sortedIndex(ary, val) {
+
+  }
+
+  function find(collection, predicate = 0, fromIndex = 0) {
+
+  }
+
   // 返回一个对象
   return {
     compact,
@@ -64,6 +151,16 @@ var tone94 = function () {
     last,
     lastIndexOf,
     chunk,
+    drop,
+    dropRight,
+    fill,
+    indexOf,
+    initial,
+    head,
+    fromPairs,
+    toPairs,
+    reverse,
+
   }
 
 }()

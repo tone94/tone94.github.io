@@ -14,7 +14,7 @@ var tone94 = function () {
     var result = ""
     if (sep == null) sep = ","
     for (var i = 0; i < ary.length - 1; i++) {
-      result += ary[i] + sep
+      result += ary[i] + "" + sep
     }
     result += ary[ary.length - 1]
     return result

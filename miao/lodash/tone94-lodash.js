@@ -63,6 +63,7 @@ var tone94 = function () {
     join,
     last,
     lastIndexOf,
+    chunk,
   }
 
 }()

@@ -669,6 +669,7 @@
     console.log(Math.ceil(time))
   </script>
 
+  <!-- todo 20题有问题 -->
   <script type="norun" id="ch0105/20">
     var n = Number(prompt('n : '))
     var total = 2 * n //?????
@@ -854,6 +855,7 @@
   <script type="norun" id="ch0105/31">
     var n = prompt('n : ')
     var m = prompt('m : ')
+    var res = ''
     for (var i = 1; i <= n; i++) {
       var flag = i % 2 == 0 // 初始状态
       for (var j = 3; j <= m; j++) {
@@ -862,9 +864,10 @@
         }
       }
       if (!flag) {
-        console.log(i)
+        res += i + " "
       }
     }
+    console.log(res)
   </script>
 
   <script type="norun" id="ch0105/32">

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // sqrt: 求一个正数的平方根
+    // x = (x + n / x) / 2 公式
+    // 11-17 下午四点
+    function sqrt(n) {
+        var x = n
+        while (Math.abs(x * x - n) > 0.000000001) {
+            x = (x + n / x) / 2
+        }
+        return x
+    }
+    // narcissistic: 写一个函数判断一个数是否为水仙花数
+    // 水仙花数只是自幂数的一种，严格来说3位数的3次幂数才称为水仙花数。
+    function isNarcissistic(n) {
+        var ge = n % 10
+        var shi = (n - ge) / 10 % 10
+        var bai = (n - ge - shi * 10) / 100
+        if (Math.pow(ge, 3) + Math.pow(shi, 3) + Math.pow(bai, 3) == n) {
+            return true
+        }
+        return false
+    }
+    // narcissistics: 输出10000以内的所有水仙花数
+    function printNarcissistics(n) {
+
+    }
+    // palindrom: 写函数求阶乘
+    // 回文.....
+    function palindrom(n) {
+        var x = 1
+        var i = n
+        for (i; i > 1; i--) {
+            x *= n
+            n--
+        }
+        return x
+    }
+    // weekday: 给写年和月，计算这个月的第一天是星期几
+    function weekday(y, m) {
+
+    }
+    // complete-number: 写一个函数求一个数是否为完全数（它的因子之和等于它自己）
+    // ?? 怎么求自己的因子
+    function isCompleteNum(n) {
+
+    }
+    // complete-numbers: 输出1000以内的所有完全数
+    function printCompleteNums(n) {
+
+    }
+    // prime: 判断素数
+    function isPrime(n) {
+        var sqrt_n = Math.sqrt(n)
+        for (var i = 2; i <= sqrt_n; i++) {
+            if (n % i == 0 && n != i) {
+                return false
+            }
+        }
+        return true
+    }
+    // primes: 输出1000以内的素数
+    function printPrime(n) {
+
+    }
+    // itob: 不使用隐式类型转换将一个数字转换为字符串
+    function itob(n) { }
+    // lcf: 写函数求出两个数的最大公约数
+    function lcf(n, m) { }
+    // 两个数的乘积等于他们的lcm*lcf
+    // lcm: 写函数求出两个数的最小公倍数
+    function lcm(n, m) { }
+
+</script>
+
+</html>

@@ -236,6 +236,10 @@ var tone94 = function () {
     return result
   }
 
+  function sortedIndex(ary, val) {
+
+  }
+
   function flatten(ary) {
     var result = []
     var i = 0
@@ -251,7 +255,17 @@ var tone94 = function () {
     return result
   }
 
-  // predicate 返回真假, 返回第一个真的对象
+  function flattenDeep(ary) {
+
+  }
+
+  function flattenDepth(ary, depth = 1) {
+
+  }
+
+  /** 这几个函数有很多重复的参数校验代码 */
+
+  // predicate 返回真假, 返回所有符合条件的对象
   // function object(全匹配) ary(只匹配前两项) string(有该属性且为真)
   function filter(collection, predicate) {
     if (!collection || !Object.keys(collection).length) return []
@@ -266,24 +280,12 @@ var tone94 = function () {
     return result
   }
 
-  // function flattenDeep(ary) {
-
-  // }
-
-  // function flattenDepth(ary, depth = 1) {
-
-  // }
-
-  // function sortedIndex(ary, val) {
-
-  // }
-
-  // predicate 返回真假, 返回第一个真的对象
+  // predicate 返回真假, 返回第一个符合条件的对象
   // function object(全匹配) ary(只匹配前两项) string(有该属性且为真)
   function find(collection, predicate, fromIndex = 0) {
-    if (!collection || !Object.keys(collection).length) return []
-    if (predicate === undefined) return collection
-    var result = collection[0]
+    if (!collection || !Object.keys(collection).length) return undefined
+    if (predicate === undefined) predicate = {}
+    var result
     var test = getIterator(predicate)
     for (var i = fromIndex; i < collection.length; i++) {
       if (test(collection[i])) {
@@ -294,6 +296,39 @@ var tone94 = function () {
     return result
   }
 
+  // 返回符合条件的索引
+  function findIndex(collection, predicate, fromIndex = 0) {
+    if (!collection || !Object.keys(collection).length) return undefined
+    if (predicate === undefined) predicate = {}
+    var result = -1
+    var test = getIterator(predicate)
+    for (var i = fromIndex; i < collection.length; i++) {
+      if (test(collection[i])) {
+        result = i
+        break
+      }
+    }
+    return result
+  }
+
+  function every(collection, predicate) {
+    if (!collection || !Object.keys(collection).length) return true
+    if (predicate === undefined) predicate = {}
+    var result = true
+    var test = getIterator(predicate)
+    for (var i = 0; i < collection.length; i++) {
+      if (!test(collection[i])) {
+        result = false
+        break
+      }
+    }
+    return result
+  }
+
+
+
+
+  // private
   function getIterator(predicate) {
     if (typeof predicate == "function") return predicate
     if (predicate instanceof Array) {
@@ -343,6 +378,8 @@ var tone94 = function () {
     concat,
     filter,
     find,
+    findIndex,
+    every,
   }
 
 }()

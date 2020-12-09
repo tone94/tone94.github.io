@@ -1,5 +1,41 @@
 var tone94 = function () {
 
+  /** math  */
+  function max(ary) {
+    if (!ary.length) return undefined
+    var max = ary[0]
+    for (var i = 1; i < ary.length; i++) {
+      if (ary[i] > max) max = ary[i]
+    }
+    return max
+  }
+
+  // iteratee invoke for each element in ary to 
+  function maxBy(ary, iteratee) {
+    if (!ary || !ary.length) return undefined
+    if (typeof iteratee != "function") {
+      var name = iteratee
+      iteratee = o => o[name]
+    }
+    var max = ary[0]
+    for (var i = 1; i < ary.length; i++) {
+      if ((iteratee(ary[i]) || -Infinity) > (iteratee(max) || -Infinity)) {
+        max = ary[i]
+      }
+    }
+    return iteratee(max) ? max : undefined
+  }
+
+  function min(ary) {
+    if (!ary.length) return undefined
+    var min = ary[0]
+    for (var i = 1; i < ary.length; i++) {
+      if (ary[i] < min) min = ary[i]
+    }
+    return min
+  }
+
+  /** array  */
   function compact(ary) {
     var result = []
     for (var i = 0; i < ary.length; i++) {
@@ -193,6 +229,9 @@ var tone94 = function () {
     reverse,
     toArray,
     flatten,
+    max,
+    min,
+
   }
 
 }()

@@ -231,6 +231,7 @@ var tone94 = function () {
     flatten,
     max,
     min,
+    maxBy,
 
   }
 

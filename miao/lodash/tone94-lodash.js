@@ -366,7 +366,7 @@ var tone94 = function () {
     if (!ary || !ary.length) return []
     var result = []
     var func = (it, depth) => {
-      if (depth > 0 && (it instanceof Array)) {
+      if (depth >= 0 && (it instanceof Array)) {
         for (var i = 0; i < it.length; i++) {
           func(it[i], depth--)
         }

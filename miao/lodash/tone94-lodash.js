@@ -35,6 +35,46 @@ var tone94 = function () {
     return min
   }
 
+  function minBy(ary, iteratee) {
+    if (!ary || !ary.length) return undefined
+    if (typeof iteratee != "function") {
+      var name = iteratee
+      iteratee = o => o[name]
+    }
+    var min = ary[0]
+    for (var i = 1; i < ary.length; i++) {
+      if ((iteratee(ary[i]) || Infinity) < (iteratee(min) || Infinity)) {
+        min = ary[i]
+      }
+    }
+    return iteratee(min) ? min : undefined
+  }
+
+  function sum(ary) {
+    var result = 0
+    for (var i = 0; i < ary.length; i++) {
+      result += ary[i]
+    }
+    return result
+  }
+
+  function sumBy(ary, iteratee) {
+    if (!ary || !ary.length) return undefined
+    if (!iteratee) return ary.toString()
+    if (typeof iteratee != "function") {
+      var name = iteratee
+      iteratee = o => o[name]
+    }
+    var result
+    for (var i = 0; i < ary.length; i++) {
+      if (iteratee(ary[i]) != undefined) {
+        if (result == undefined) result = 0
+        result += iteratee(ary[i])
+      }
+    }
+    return result
+  }
+
   /** array  */
   function compact(ary) {
     var result = []
@@ -207,9 +247,15 @@ var tone94 = function () {
 
   // }
 
-  // function find(collection, predicate = 0, fromIndex = 0) {
-
-  // }
+  // predicate 返回真假, 返回第一个真的对象
+  // function object(全匹配) ary(只匹配前两项) string(有该属性且为真)
+  function find(collection, predicate, fromIndex = 0) {
+    if (!collection || !collection.length) return undefined
+    if (typeof predicate != "function") {
+      var obj = iteratee
+      iteratee = o => o[name]
+    }
+  }
 
   // 返回一个对象
   return {
@@ -230,9 +276,11 @@ var tone94 = function () {
     toArray,
     flatten,
     max,
-    min,
     maxBy,
-
+    min,
+    minBy,
+    sum,
+    sumBy,
   }
 
 }()

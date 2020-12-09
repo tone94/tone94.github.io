@@ -76,6 +76,86 @@ var tone94 = function () {
   }
 
   /** array  */
+
+  /** 以下 这几个函数有很多重复的参数校验代码 */
+
+  // predicate 返回真假, 返回所有符合条件的对象
+  // function object(全匹配) ary(只匹配前两项) string(有该属性且为真)
+  function filter(collection, predicate) {
+    if (!collection || !Object.keys(collection).length) return []
+    if (predicate === undefined) return collection
+    var result = []
+    var test = getIterator(predicate)
+    for (var item in collection) {
+      if (test(collection[item])) {
+        result.push(collection[item])
+      }
+    }
+    return result
+  }
+
+  // predicate 返回真假, 返回第一个符合条件的对象
+  // function object(全匹配) ary(只匹配前两项) string(有该属性且为真)
+  function find(collection, predicate, fromIndex = 0) {
+    if (!collection || !Object.keys(collection).length) return undefined
+    if (predicate === undefined) predicate = {}
+    var result
+    var test = getIterator(predicate)
+    for (var i = fromIndex; i < collection.length; i++) {
+      if (test(collection[i])) {
+        result = collection[i]
+        break
+      }
+    }
+    return result
+  }
+
+  // 返回符合条件的索引
+  function findIndex(ary, predicate, fromIndex = 0) {
+    if (!ary || !Object.keys(ary).length) return undefined
+    if (predicate === undefined) predicate = {}
+    var result = -1
+    var test = getIterator(predicate)
+    for (var i = fromIndex; i < ary.length; i++) {
+      if (test(ary[i])) {
+        result = i
+        break
+      }
+    }
+    return result
+  }
+
+  // 返回符合条件的索引
+  function findLastIndex(ary, predicate, fromIndex = ary ? ary.length - 1 : 0) {
+    if (!ary || !Object.keys(ary).length) return -1
+    if (predicate === undefined) predicate = {}
+    var result = -1
+    var test = getIterator(predicate)
+    for (var i = fromIndex; i >= 0; i--) {
+      if (test(ary[i])) {
+        result = i
+        break
+      }
+    }
+    return result
+  }
+
+  function every(collection, predicate) {
+    if (!collection || !Object.keys(collection).length) return true
+    if (predicate === undefined) predicate = {}
+    var result = true
+    var test = getIterator(predicate)
+    for (var i = 0; i < collection.length; i++) {
+      if (!test(collection[i])) {
+        result = false
+        break
+      }
+    }
+    return result
+  }
+
+  /** 以上 这几个函数有很多重复的参数校验代码 */
+
   function compact(ary) {
     var result = []
     for (var i = 0; i < ary.length; i++) {
@@ -236,8 +316,19 @@ var tone94 = function () {
     return result
   }
 
+  // 按顺序插入的位置,相同靠左
   function sortedIndex(ary, val) {
-
+    // 哨兵
+    ary.unshift(-Infinity), ary.push(Infinity)
+    var left = 0, right = ary.length - 1, mid
+    while (right - left > 1) {
+      mid = Math.ceil((right + left) / 2)
+      if (val > ary[mid]) left = mid
+      else if (val <= ary[mid]) right = mid
+    }
+    // 移除哨兵
+    ary.shift(), ary.pop()
+    return left
   }
 
   function flatten(ary) {
@@ -255,80 +346,21 @@ var tone94 = function () {
     return result
   }
 
+  // --todo
   function flattenDeep(ary) {
 
   }
 
+  // --todo
   function flattenDepth(ary, depth = 1) {
 
   }
 
-  /** 这几个函数有很多重复的参数校验代码 */
-
-  // predicate 返回真假, 返回所有符合条件的对象
-  // function object(全匹配) ary(只匹配前两项) string(有该属性且为真)
-  function filter(collection, predicate) {
-    if (!collection || !Object.keys(collection).length) return []
-    if (predicate === undefined) return collection
-    var result = []
-    var test = getIterator(predicate)
-    for (var item in collection) {
-      if (test(collection[item])) {
-        result.push(collection[item])
-      }
-    }
-    return result
-  }
-
-  // predicate 返回真假, 返回第一个符合条件的对象
-  // function object(全匹配) ary(只匹配前两项) string(有该属性且为真)
-  function find(collection, predicate, fromIndex = 0) {
-    if (!collection || !Object.keys(collection).length) return undefined
-    if (predicate === undefined) predicate = {}
-    var result
-    var test = getIterator(predicate)
-    for (var i = fromIndex; i < collection.length; i++) {
-      if (test(collection[i])) {
-        result = collection[i]
-        break
-      }
-    }
-    return result
-  }
-
-  // 返回符合条件的索引
-  function findIndex(collection, predicate, fromIndex = 0) {
-    if (!collection || !Object.keys(collection).length) return undefined
-    if (predicate === undefined) predicate = {}
-    var result = -1
-    var test = getIterator(predicate)
-    for (var i = fromIndex; i < collection.length; i++) {
-      if (test(collection[i])) {
-        result = i
-        break
-      }
-    }
-    return result
-  }
-
-  function every(collection, predicate) {
-    if (!collection || !Object.keys(collection).length) return true
-    if (predicate === undefined) predicate = {}
-    var result = true
-    var test = getIterator(predicate)
-    for (var i = 0; i < collection.length; i++) {
-      if (!test(collection[i])) {
-        result = false
-        break
-      }
-    }
-    return result
-  }
 
 
 
 
-  // private
+  // --private
   function getIterator(predicate) {
     if (typeof predicate == "function") return predicate
     if (predicate instanceof Array) {
@@ -380,6 +412,10 @@ var tone94 = function () {
     find,
     findIndex,
     every,
+    findLastIndex,
+    sortedIndex,
+
+    // --r
   }
 
 }()

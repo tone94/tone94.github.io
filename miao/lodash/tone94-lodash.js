@@ -133,6 +133,22 @@ var tone94 = function () {
     return result
   }
 
+  function concat(ary) {
+    var result = ary == undefined ? [] : ary
+    if (arguments.length < 2) return result
+    for (var i = 1; i < arguments.length; i++) {
+      if (typeof arguments[i] == "object" && arguments[i] instanceof Array) {
+        for (var j in arguments[i]) {
+          result.push(arguments[i][j])
+        }
+      } else {
+        result.push(arguments[i])
+      }
+    }
+    return result
+  }
+
+
   function drop(ary, n = 1) {
     var result = []
     for (var i = n; i < ary.length; i++) {
@@ -235,6 +251,21 @@ var tone94 = function () {
     return result
   }
 
+  // predicate 返回真假, 返回第一个真的对象
+  // function object(全匹配) ary(只匹配前两项) string(有该属性且为真)
+  function filter(collection, predicate) {
+    if (!collection || !Object.keys(collection).length) return []
+    if (predicate === undefined) return collection
+    var result = []
+    var test = getIterator(predicate)
+    for (var item in collection) {
+      if (test(collection[item])) {
+        result.push(collection[item])
+      }
+    }
+    return result
+  }
+
   // function flattenDeep(ary) {
 
   // }
@@ -250,12 +281,40 @@ var tone94 = function () {
   // predicate 返回真假, 返回第一个真的对象
   // function object(全匹配) ary(只匹配前两项) string(有该属性且为真)
   function find(collection, predicate, fromIndex = 0) {
-    if (!collection || !collection.length) return undefined
-    if (typeof predicate != "function") {
-      var obj = iteratee
-      iteratee = o => o[name]
+    if (!collection || !Object.keys(collection).length) return []
+    if (predicate === undefined) return collection
+    var result = collection[0]
+    var test = getIterator(predicate)
+    for (var i = fromIndex; i < collection.length; i++) {
+      if (test(collection[i])) {
+        result = collection[i]
+        break
+      }
+    }
+    return result
+  }
+
+  function getIterator(predicate) {
+    if (typeof predicate == "function") return predicate
+    if (predicate instanceof Array) {
+      if (predicate.length < 2) return () => false
+      return o => o[predicate[0]] === predicate[1]
+    }
+    if (typeof predicate == "string") {
+      if (!predicate) return () => false
+      return o => o[predicate]
+    }
+    if (typeof predicate == "object") {
+      if (!Object.keys(predicate).length) return () => true
+      return o => {
+        for (var item in predicate) {
+          if (o[item] == undefined || o[item] !== predicate[item]) return false
+        }
+        return true
+      }
     }
   }
+
 
   // 返回一个对象
   return {
@@ -281,6 +340,9 @@ var tone94 = function () {
     minBy,
     sum,
     sumBy,
+    concat,
+    filter,
+    find,
   }
 
 }()

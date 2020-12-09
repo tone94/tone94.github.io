@@ -399,7 +399,10 @@ var tone94 = function () {
     for (var i = 0; i < result.length; i++) {
       if (!test(result[i])) {
         break
-      } else { result.shift(result[i]) }
+      } else {
+        result.shift(result[i])
+        i--
+      }
     }
     return result
   }

@@ -166,33 +166,6 @@ var tone94 = function () {
     return result
   }
 
-  function dropRightWhile(ary, predicate) {
-    if (predicate == undefined || !ary || !ary.length) return []
-    if (typeof predicate == "string") return ary
-    var result = []
-    var test = getIterator(predicate)
-    for (var item in ary) {
-      if (!test(ary[item])) {
-        result.push(ary[item])
-      }
-    }
-    return result
-  }
-
-  // 这两有区别?
-  function dropWhile(ary, predicate) {
-    if (predicate == undefined || !ary || !ary.length) return []
-    if (typeof predicate == "string") return ary
-    var result = []
-    var test = getIterator(predicate)
-    for (var item in ary) {
-      if (!test(ary[item])) {
-        result.push(ary[item])
-      }
-    }
-    return result
-  }
-
   function fill(ary, val, start = 0, end = ary.length) {
     var result = ary
     for (var i = start; i < end && i < ary.length; i++) {
@@ -405,6 +378,32 @@ var tone94 = function () {
     return result
   }
 
+  // 从末尾遍历, pop 直到遇到false
+  function dropRightWhile(ary, predicate) {
+    if (predicate == undefined || !ary || !ary.length) return []
+    var result = ary
+    var test = getIterator(predicate)
+    for (var i = result.length - 1; i >= 0; i--) {
+      if (!test(result[i])) {
+        break
+      } else { result.pop(result[i]) }
+    }
+    return result
+  }
+
+  // 从头遍历, shift 直到遇到false
+  function dropWhile(ary, predicate) {
+    if (predicate == undefined || !ary || !ary.length) return []
+    var result = ary
+    var test = getIterator(predicate)
+    for (var i = 0; i < result.length; i++) {
+      if (!test(result[i])) {
+        break
+      } else { result.shift(result[i]) }
+    }
+    return result
+  }
+
   /** 以上 这几个函数有很多重复的参数校验代码 */
 
   // --private
@@ -464,6 +463,7 @@ var tone94 = function () {
     flattenDeep,
     flattenDepth,
     dropRightWhile,
+    dropWhile,
 
     // --r
   }

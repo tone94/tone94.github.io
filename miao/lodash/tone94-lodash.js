@@ -346,14 +346,36 @@ var tone94 = function () {
     return result
   }
 
-  // --todo
   function flattenDeep(ary) {
-
+    if (!ary || !ary.length) return []
+    var result = []
+    var func = it => {
+      if (it instanceof Array) {
+        for (var i = 0; i < it.length; i++) {
+          func(it[i])
+        }
+      } else {
+        result.push(it)
+      }
+    }
+    func(ary)
+    return result
   }
 
-  // --todo
   function flattenDepth(ary, depth = 1) {
-
+    if (!ary || !ary.length) return []
+    var result = []
+    var func = (it, depth) => {
+      if (depth > 0 && (it instanceof Array)) {
+        for (var i = 0; i < it.length; i++) {
+          func(it[i], depth--)
+        }
+      } else {
+        result.push(it)
+      }
+    }
+    func(ary, depth)
+    return result
   }
 
 
@@ -414,6 +436,8 @@ var tone94 = function () {
     every,
     findLastIndex,
     sortedIndex,
+    flattenDeep,
+    flattenDepth,
 
     // --r
   }

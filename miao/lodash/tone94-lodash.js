@@ -174,6 +174,24 @@ var tone94 = function () {
     return result
   }
 
+  function pull(ary, ...values) {
+    return ary.filter((it) => {
+      for (var e of values) {
+        if (it === e) return false
+      }
+      return true
+    })
+  }
+
+  function pullAll(ary, values) {
+    return ary.filter((it) => {
+      for (var e of values) {
+        if (it === e) return false
+      }
+      return true
+    })
+  }
+
   function indexOf(ary, val, fromIndex = 0) {
     for (var i = fromIndex; i < ary.length; i++) {
       if (ary[i] === val) {
@@ -283,6 +301,20 @@ var tone94 = function () {
     return result
   }
 
+  // 代码优化
+  function flattenDeep2(ary) {
+    if (!ary || !ary.length) return []
+    var result = []
+    for (var i = 0; i < ary.length; i++) {
+      if (ary[i] instanceof Array) {
+        result.push(...flattenDeep2(ary[i]))
+      } else {
+        result.push(ary[i])
+      }
+    }
+    return result
+  }
+
   function flattenDepth(ary, depth = 1) {
     if (!ary || !ary.length) return []
     var result = []
@@ -296,6 +328,22 @@ var tone94 = function () {
       }
     }
     func(ary, depth)
+    return result
+  }
+
+  // 代码优化
+  function flattenDepth2(ary, depth = 1) {
+    if (depth == 0) {
+      return ary.slice()
+    }
+    var result = []
+    for (var i = 0; i < ary.length; i++) {
+      if (ary[i] instanceof Array) {
+        result.push(...flattenDepth2(ary[i], depth - 1))
+      } else {
+        result.push(ary[i])
+      }
+    }
     return result
   }
 

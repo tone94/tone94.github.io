@@ -317,7 +317,7 @@ var tone94 = function () {
     return res
   }
 
-  function intersectionBy(ary, ...arrays, iteratee) {
+  function intersectionBy(ary, arrays, iteratee) {
   }
 
   // 数组的并集
@@ -457,6 +457,16 @@ var tone94 = function () {
     // 因为 typeof NaN 返回 'number', 但是 NaN != NaN , +号用于隐式类型转换,不知道是不是没必要用+
     // new Number('f') 为 NaN
     return isNumber(value) && value != +value;
+  }
+
+  // 洗牌算法
+  function shuffle(collection) {
+    for (let i = collection.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      // 解构赋值语法
+      [collection[i], collection[j]] = [collection[j], collection[i]];
+    }
+    return collection
   }
 
   // 二分查找
@@ -743,6 +753,7 @@ var tone94 = function () {
     isNaN,
     isNumber,
     isObjectLike,
+    shuffle,
 
     // --r
   }

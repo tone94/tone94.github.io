@@ -337,6 +337,10 @@ var tone94 = function () {
     return setTimeout(func, wait, ...args) - 1
   }
 
+  function isArguments(value) {
+    return Object.prototype.toString.call(value) === argsTag
+  }
+
   // 数组的并集
   function union(ary, ...arrays) {
     var res = [...ary]
@@ -458,7 +462,7 @@ var tone94 = function () {
   }
 
   function sample(collection) {
-    if (!collection || collection.length) return undefined
+    if (!collection || !collection.length) return undefined
     const j = Math.floor(Math.random() * (collection.length));
     return collection[j]
   }
@@ -778,6 +782,7 @@ var tone94 = function () {
     sampleSize,
     defer,
     delay,
+    isArguments,
 
     // --r
   }

@@ -333,7 +333,7 @@ var tone94 = function () {
     return res
   }
 
-  function unionBy(ary, ...arrays, iteratee) {
+  function unionBy(ary, arrays, iteratee) {
 
   }
 

@@ -149,7 +149,6 @@ var tone94 = function () {
     return result
   }
 
-
   function drop(ary, n = 1) {
     var result = []
     for (var i = n; i < ary.length; i++) {
@@ -255,7 +254,48 @@ var tone94 = function () {
     return result
   }
 
-  // 按顺序插入的位置,相同靠左
+  function difference(array, ...values) {
+    var collection = concat(...values)
+    var res = []
+    for (var i = 0; i < array.length; i++) {
+      if (collection.indexOf(array[i]) == -1) {
+        res.push(array[i])
+      }
+    }
+    return res
+  }
+
+  // function differenceBy(array, ...values, iteratee) {
+  //   iteratee = getIterator(iteratee)
+  //   var set = concat(...values)
+  //   var res = []
+  //   for (var i = 0; i < array.length; i++) {
+  //     if (set.indexOf(array[i]) == -1) {
+  //       res.push(array[i])
+  //     }
+  //   }
+  //   return res
+  // }
+
+  // 数组的交集
+  function intersection(ary, ...arrays) {
+    if (!ary || !ary.length) return []
+    var res = [...ary]
+    for (var ary of arrays) {
+      var t = []
+      for (var i = 0; i < res.length; i++) {
+        if (ary.indexOf(res[i]) != -1) {
+          t.push(res[i])
+        }
+      }
+      if (!t.length) return []
+      res = [...t]
+    }
+    return res
+  }
+
+  // 二分查找
+  // 返回给定val, 在数组ary中按顺序应该插入的位置, 相同靠左
   function sortedIndex(ary, val) {
     // 哨兵
     ary.unshift(-Infinity), ary.push(Infinity)
@@ -515,6 +555,13 @@ var tone94 = function () {
     flattenDepth,
     dropRightWhile,
     dropWhile,
+    pull,
+    pullAll,
+    difference,
+    // differenceBy,
+    // differenceWith,
+    intersection,
+
 
     // --r
   }

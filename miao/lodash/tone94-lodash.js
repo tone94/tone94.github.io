@@ -1,5 +1,28 @@
 var tone94 = function () {
 
+  var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    asyncTag = '[object AsyncFunction]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    domExcTag = '[object DOMException]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    nullTag = '[object Null]',
+    objectTag = '[object Object]',
+    promiseTag = '[object Promise]',
+    proxyTag = '[object Proxy]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]',
+    undefinedTag = '[object Undefined]',
+    weakMapTag = '[object WeakMap]',
+    weakSetTag = '[object WeakSet]';
+
   /** math  */
   function max(ary) {
     if (!ary.length) return undefined
@@ -294,6 +317,148 @@ var tone94 = function () {
     return res
   }
 
+  function intersectionBy(ary, ...arrays, iteratee) {
+  }
+
+  // 数组的并集
+  function union(ary, ...arrays) {
+    var res = [...ary]
+    for (var ary of arrays) {
+      for (var i = 0; i < ary.length; i++) {
+        if (res.indexOf(ary[i]) == -1) {
+          res.push(ary[i])
+        }
+      }
+    }
+    return res
+  }
+
+  function unionBy(ary, ...arrays, iteratee) {
+
+  }
+
+  // 去重
+  function uniq(array) {
+    var res = []
+    for (var i = 0; i < array.length; i++) {
+      if (!res.includes(array[i])) {
+        res.push(array[i])
+      }
+    }
+    return res
+  }
+
+
+  function uniqBy(array, iteratee) {
+
+  }
+
+  function zip(...arrays) {
+    var res = []
+    if (!arrays.length) return res
+    var maxLen = Math.max(...arrays.map(a => a.length))
+    // 为什么直接 fill([]) 不行? 直接fill([]), 传进去的所有[]都指向同一个引用
+    var res = new Array(maxLen).fill(0).map(() => [])
+    for (var i = 0; i < maxLen; i++) {
+      for (var j = 0; j < arrays.length; j++) {
+        res[i][j] = arrays[j][i]
+      }
+    }
+    return res
+  }
+
+  function unzip(array) {
+    var res = []
+    if (!array || !array.length) return res
+    var arrays = [...array]
+    var maxLen = Math.max(...arrays.map(a => a.length))
+    var res = new Array(maxLen).fill(0).map(() => [])
+    for (var i = 0; i < maxLen; i++) {
+      for (var j = 0; j < arrays.length; j++) {
+        res[i][j] = arrays[j][i]
+      }
+    }
+    return res
+  }
+
+  // 和pull的区别是without返回新数组
+  function without(array, ...values) {
+    var res = [...array]
+    return pull(res, ...values)
+  }
+
+  // 数组的对称差集
+  function xor(...arys) {
+    var res = flatten(arys)
+    for (var i = 0; i < res.length; i++) {
+      if (res.lastIndexOf(res[i]) != i) {
+        res = pull(res, res[i])
+        i--
+      }
+    }
+    return res
+  }
+
+  function nth(array, n = 0) {
+    if (n < 0) {
+      n = array.length + n
+    }
+    return array[n]
+  }
+
+  function tail(array) {
+    var res = []
+    for (var i = 1; i < array.length; i++) {
+      res.push(array[i])
+    }
+    return res
+  }
+
+  function take(array, n = 1) {
+    var res = []
+    for (var i = 0; i < n && i < array.length; i++) {
+      res.push(array[i])
+    }
+    return res
+  }
+
+  function takeRight(array, n = 1) {
+    var res = []
+    for (var i = -n; i < 0; i++) {
+      var it = nth(array, i)
+      if (it !== undefined) res.push(it)
+    }
+    return res
+  }
+
+  function includes(collection, value, fromIndex = 0) {
+
+  }
+
+  /** collection */
+  function countBy(collection, iteratee) {
+
+  }
+
+  /** lang */
+  function isObjectLike(value) {
+    return value != null && typeof value == 'object';
+  }
+
+  function isNumber(value) {
+    return typeof value == 'number' ||
+      (isObjectLike(value) && Object.prototype.toString.call(value) == numberTag);
+  }
+
+  // 判断是否不是数值
+  function isNaN(value) {
+    // isNumber 判断是否是数值, 不是直接返回false
+    // value != value 用于判断NaN的情况
+    // 因为 typeof NaN 返回 'number', 但是 NaN != NaN , +号用于隐式类型转换,不知道是不是没必要用+
+    // new Number('f') 为 NaN
+    return isNumber(value) && value != +value;
+  }
+
   // 二分查找
   // 返回给定val, 在数组ary中按顺序应该插入的位置, 相同靠左
   function sortedIndex(ary, val) {
@@ -561,7 +726,23 @@ var tone94 = function () {
     // differenceBy,
     // differenceWith,
     intersection,
-
+    //intersectionBy,
+    union,
+    //unionBy,
+    uniq,
+    //uniqBy,
+    zip,
+    unzip,
+    without,
+    xor,
+    //countBy,
+    nth,
+    tail,
+    take,
+    takeRight,
+    isNaN,
+    isNumber,
+    isObjectLike,
 
     // --r
   }

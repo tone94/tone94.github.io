@@ -459,14 +459,36 @@ var tone94 = function () {
     return isNumber(value) && value != +value;
   }
 
-  // 洗牌算法
-  function shuffle(collection) {
-    for (let i = collection.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+  function sample(collection) {
+    if (!collection || collection.length) return undefined
+    const j = Math.floor(Math.random() * (collection.length));
+    return collection[j]
+  }
+
+  function sampleSize(collection, n = 1) {
+    if (!collection || !collection.length) return res
+    // 不改变原数组
+    let ary = [...collection]
+    let len = ary.length
+    for (let i = 0; i < ary.length && i < n; i++) {
+      const j = Math.floor(Math.random() * (len));
       // 解构赋值语法
-      [collection[i], collection[j]] = [collection[j], collection[i]];
+      [ary[len - 1], ary[j]] = [ary[j], ary[len - 1]];
+      --len
     }
-    return collection
+    return ary.slice(len)
+  }
+
+  // Fisher–Yates shuffle 洗牌算法
+  // 抽牌----不停的从剩下的扑克当中抽取一个，直到抽取的牌组成一副新的扑克为止
+  function shuffle(collection) {
+    return sampleSize(collection, collection.length)
+    // for (let i = collection.length - 1; i > 0; i--) {
+    //   // 从剩下的项中抽取一个
+    //   const j = Math.floor(Math.random() * (i + 1));
+    //   [collection[i], collection[j]] = [collection[j], collection[i]];
+    // }
+    // return collection
   }
 
   // 二分查找
@@ -754,6 +776,8 @@ var tone94 = function () {
     isNumber,
     isObjectLike,
     shuffle,
+    sample,
+    sampleSize,
 
     // --r
   }

@@ -288,18 +288,6 @@ var tone94 = function () {
     return res
   }
 
-  // function differenceBy(array, ...values, iteratee) {
-  //   iteratee = getIterator(iteratee)
-  //   var set = concat(...values)
-  //   var res = []
-  //   for (var i = 0; i < array.length; i++) {
-  //     if (set.indexOf(array[i]) == -1) {
-  //       res.push(array[i])
-  //     }
-  //   }
-  //   return res
-  // }
-
   // 数组的交集
   function intersection(ary, ...arrays) {
     if (!ary || !ary.length) return []
@@ -317,7 +305,36 @@ var tone94 = function () {
     return res
   }
 
+  // todo
   function intersectionBy(ary, arrays, iteratee) {
+  }
+
+  function differenceBy(array, values, iteratee) {
+
+  }
+
+  function unionBy(ary, arrays, iteratee) {
+
+  }
+
+  function uniqBy(array, iteratee) {
+
+  }
+
+  function includes(collection, value, fromIndex = 0) {
+
+  }
+
+  function countBy(collection, iteratee) {
+
+  }
+
+  function defer(func, ...args) {
+    return delay(func, 0, ...args)
+  }
+
+  function delay(func, wait, ...args) {
+    return setTimeout(func, wait, ...args) - 1
   }
 
   // 数组的并集
@@ -333,10 +350,6 @@ var tone94 = function () {
     return res
   }
 
-  function unionBy(ary, arrays, iteratee) {
-
-  }
-
   // 去重
   function uniq(array) {
     var res = []
@@ -346,11 +359,6 @@ var tone94 = function () {
       }
     }
     return res
-  }
-
-
-  function uniqBy(array, iteratee) {
-
   }
 
   function zip(...arrays) {
@@ -431,16 +439,6 @@ var tone94 = function () {
     return res
   }
 
-  function includes(collection, value, fromIndex = 0) {
-
-  }
-
-  /** collection */
-  function countBy(collection, iteratee) {
-
-  }
-
-  /** lang */
   function isObjectLike(value) {
     return value != null && typeof value == 'object';
   }
@@ -778,6 +776,8 @@ var tone94 = function () {
     shuffle,
     sample,
     sampleSize,
+    defer,
+    delay,
 
     // --r
   }

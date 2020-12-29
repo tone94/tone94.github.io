@@ -714,8 +714,9 @@ var tone94 = function () {
 
   function toLength(value) {
     value = toInteger(value)
+    var max = 2 ** 32 - 1
     if (value < 0) return 0
-    if (value > 2 ** 32) return 2 ** 32
+    if (value > max) return max
     return value
   }
 
@@ -749,6 +750,22 @@ var tone94 = function () {
       res += e
     }
     return res / array.length
+  }
+
+  function castArray(value) {
+    if (!arguments.length) return []
+    if (isArray(value)) return value
+    var res = []
+    res.push(value)
+    return res
+  }
+
+  function conformsTo(object, source) {
+    var keyArr = Object.keys(source)
+    for (var key of keyArr) {
+      if (!source[key].call(null, object[key])) return false
+    }
+    return true
   }
 
   // 二分查找
@@ -1083,6 +1100,8 @@ var tone94 = function () {
     mean,
     multiply,
     subtract,
+    castArray,
+    conformsTo,
 
     // --r
   }

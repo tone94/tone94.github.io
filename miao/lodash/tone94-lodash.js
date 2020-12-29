@@ -23,6 +23,18 @@ var tone94 = function () {
     weakMapTag = '[object WeakMap]',
     weakSetTag = '[object WeakSet]';
 
+  var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
   const MAX_SAFE_INTEGER = 9007199254740991;
 
   /** math  */
@@ -523,8 +535,15 @@ var tone94 = function () {
     return isObjectLike(value) && _getTag(value) === arrayTag
   }
 
-  function isArraylike(value) {
+  // Checks if value is array-like. 
+  // A value is considered array-like if it's not a function and 
+  // has a value.length that's an integer greater than or equal to 0 and less than or equal to Number.MAX_SAFE_INTEGER.
+  function isArrayLike(value) {
     return value != null && typeof value != 'function' && isLength(value.length)
+  }
+
+  function isArrayLikeObject(value) {
+    return isArrayLike(value) && typeof value === 'object'
   }
 
   function isFunction(value) {
@@ -552,10 +571,17 @@ var tone94 = function () {
     return isNumber(value) && value !== Infinity && value !== -Infinity
   }
 
-  function isInterger(value) {
+  function isInteger(value) {
     return typeof value === "number" &&
       isFinite(value) &&
       Math.floor(value) === value;
+  }
+
+  // 安全整数
+  // 1. 可以准确地表示为一个IEEE-754双精度数字
+  // 2. 其IEEE-754表示不能是舍入任何其他整数以适应IEEE-754表示的结果
+  function isSafeInteger(value) {
+    return isInteger(value) && value >= -MAX_SAFE_INTEGER && value <= MAX_SAFE_INTEGER;
   }
 
   function isUndefined(value) {
@@ -594,6 +620,71 @@ var tone94 = function () {
 
   function isWeakMap(value) {
     return _getTag(value) === weakMapTag
+  }
+
+  function isArrayBuffer(value) {
+    return _getTag(value) === arrayBufferTag
+  }
+
+  function isError(value) {
+    return _getTag(value) === errorTag
+  }
+
+  function isSymbol(value) {
+    return _getTag(value) == symbolTag
+  }
+  // Checks if value is likely a DOM element.
+  // Node.ELEMENT_NODE（1）
+  function isElement(value) {
+    return isObjectLike(value) && value.nodeType === 1 && !isPlainObject(value)
+  }
+
+  // 判断一个值是否是一个js原生对象
+  // 即使用Object构造函数创建的对象, 或[[Prototype]]属性为null的对象
+  function isPlainObject(value) {
+    if (!isObjectLike(value) || _getTag(value) != objectTag) {
+      return false
+    }
+    if (Object.getPrototypeOf(value) === null) {// 如果原型为null返回true
+      return true
+    }
+    let proto = value
+    while (Object.getPrototypeOf(proto) !== null) {// 获取原型是null的那个对象
+      proto = Object.getPrototypeOf(proto)
+    }
+    return Object.getPrototypeOf(value) === proto
+  }
+
+  // Checks if value is an empty object, collection, map, or set.
+  // Objects are considered empty if they have no own enumerable string keyed properties.
+  // have a length of 0. have a size of 0.
+  function isEmpty(value) {
+    if (isArrayLike(value)) {
+      return value.length <= 0
+    }
+    if (isMap(value) || isWeakMap(value) || isSet(value) || isWeakSet(value)) {
+      return value.size() <= 0
+    }
+    if (isObject(value)) {
+      return Object.entries(value).length <= 0
+    }
+    return true
+  }
+
+  // 类型化数组
+  function isTypedArray(value) {
+    if (_getTag(value) in [float32Tag,
+      float64Tag,
+      int8Tag,
+      int16Tag,
+      int32Tag,
+      uint8Tag,
+      uint8ClampedTag,
+      uint16Tag,
+      uint32Tag,]) {
+      return true
+    }
+    return false
   }
 
   function _getTag(value) {
@@ -899,10 +990,10 @@ var tone94 = function () {
     isBoolean,
     isDate,
     isNull,
-    isArraylike,
+    isArrayLike,
     isFunction,
     isLength,
-    isInterger,
+    isInteger,
     isFinite,
     isUndefined,
     isNil,
@@ -913,6 +1004,15 @@ var tone94 = function () {
     isWeakSet,
     isMap,
     isWeakMap,
+    isArrayBuffer,
+    isArrayLikeObject,
+    isElement,
+    isPlainObject,
+    isEmpty,
+    isError,
+    isSafeInteger,
+    isSymbol,
+    isTypedArray,
 
     // --r
   }

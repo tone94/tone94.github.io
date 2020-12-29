@@ -548,6 +548,54 @@ var tone94 = function () {
       value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER
   }
 
+  function isFinite(value) {
+    return isNumber(value) && value !== Infinity && value !== -Infinity
+  }
+
+  function isInterger(value) {
+    return typeof value === "number" &&
+      isFinite(value) &&
+      Math.floor(value) === value;
+  }
+
+  function isUndefined(value) {
+    return value === undefined
+  }
+
+  function isNil(value) {
+    return (isNull(value) || isUndefined(value)) ? true : false
+  }
+
+  // Checks if value is the language type of Object. 
+  // (e.g. arrays, functions, objects, regexes, new Number(0), and new String(''))
+  function isObject(value) {
+    return value != null && typeof value === 'object' || typeof value === "function"
+  }
+
+  function isString(value) {
+    return _getTag(value) === stringTag
+  }
+
+  function isRegExp(value) {
+    return _getTag(value) === regexpTag
+  }
+
+  function isSet(value) {
+    return _getTag(value) === setTag
+  }
+
+  function isWeakSet(value) {
+    return _getTag(value) === weakSetTag
+  }
+
+  function isMap(value) {
+    return _getTag(value) === mapTag
+  }
+
+  function isWeakMap(value) {
+    return _getTag(value) === weakMapTag
+  }
+
   function _getTag(value) {
     return Object.prototype.toString.call(value)
   }
@@ -854,6 +902,17 @@ var tone94 = function () {
     isArraylike,
     isFunction,
     isLength,
+    isInterger,
+    isFinite,
+    isUndefined,
+    isNil,
+    isObject,
+    isString,
+    isRegExp,
+    isSet,
+    isWeakSet,
+    isMap,
+    isWeakMap,
 
     // --r
   }

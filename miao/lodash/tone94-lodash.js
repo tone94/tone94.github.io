@@ -673,7 +673,7 @@ var tone94 = function () {
 
   // 类型化数组
   function isTypedArray(value) {
-    if (_getTag(value) in [float32Tag,
+    var typeArray = [float32Tag,
       float64Tag,
       int8Tag,
       int16Tag,
@@ -681,7 +681,8 @@ var tone94 = function () {
       uint8Tag,
       uint8ClampedTag,
       uint16Tag,
-      uint32Tag,]) {
+      uint32Tag,]
+    if (typeArray.indexOf(_getTag(value)) != -1) {
       return true
     }
     return false
@@ -689,6 +690,65 @@ var tone94 = function () {
 
   function _getTag(value) {
     return Object.prototype.toString.call(value)
+  }
+
+  // converts value to a finite number
+  function toFinite(value, func = it => it) {
+    value = +value
+    if (isNumber(value) && isFinite(value)) return func(value)
+    if (!isFinite(value)) {
+      if (value === Infinity) return func(Number.MAX_VALUE)
+      if (value === -Infinity) return func(-Number.MAX_VALUE)
+    }
+    if (!isNaN(value)) return func(value)
+    return 0
+  }
+
+  function toNumber(value) {
+    return +value
+  }
+
+  function toInteger(value, func = Math.floor) {
+    return toFinite(value, func)
+  }
+
+  function toLength(value) {
+    value = toInteger(value)
+    if (value < 0) return 0
+    if (value > 2 ** 32) return 2 ** 32
+    return value
+  }
+
+  function toSafeInteger(value) {
+    value = toInteger(value)
+    if (value > MAX_SAFE_INTEGER) return MAX_SAFE_INTEGER
+    if (value < -MAX_SAFE_INTEGER) return -MAX_SAFE_INTEGER
+    return value
+  }
+
+  function add(augend, addend) {
+    return augend + addend
+  }
+
+  function divide(dividend, divisor) {
+    return dividend / divisor
+  }
+
+  function multiply(multiplier, multiplicand) {
+    return multiplier * multiplicand
+  }
+
+  function subtract(minuend, subtrahend) {
+    return minuend - subtrahend
+  }
+
+  function mean(array) {
+    var res = 0
+    for (var e of array) {
+      if (!isNumber(e)) return NaN
+      res += e
+    }
+    return res / array.length
   }
 
   // 二分查找
@@ -1013,6 +1073,16 @@ var tone94 = function () {
     isSafeInteger,
     isSymbol,
     isTypedArray,
+    toFinite,
+    toInteger,
+    toLength,
+    toNumber,
+    toSafeInteger,
+    add,
+    divide,
+    mean,
+    multiply,
+    subtract,
 
     // --r
   }

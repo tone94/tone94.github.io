@@ -23,6 +23,8 @@ var tone94 = function () {
     weakMapTag = '[object WeakMap]',
     weakSetTag = '[object WeakSet]';
 
+  const MAX_SAFE_INTEGER = 9007199254740991;
+
   /** math  */
   function max(ary) {
     if (!ary.length) return undefined
@@ -449,7 +451,7 @@ var tone94 = function () {
 
   function isNumber(value) {
     return typeof value == 'number' ||
-      (isObjectLike(value) && Object.prototype.toString.call(value) == numberTag);
+      (isObjectLike(value) && _getTag(value) == numberTag);
   }
 
   // 判断是否不是数值
@@ -491,6 +493,63 @@ var tone94 = function () {
     //   [collection[i], collection[j]] = [collection[j], collection[i]];
     // }
     // return collection
+  }
+
+  function lt(value, other) {
+    return value < other
+  }
+
+  function lte(value, other) {
+    return value <= other
+  }
+
+  function gt(value, other) {
+    return value > other
+  }
+
+  function gte(value, other) {
+    return value >= other
+  }
+
+  function eq(value, other) {
+    // 等价于 Number.isNaN() 这个函数会判断是不是数字类型, 再判断是不是NaN
+    if (isNumber(value) && isNumber(other) && isNaN(value) && isNaN(other)) {
+      return true
+    }
+    return value === other
+  }
+
+  function isArray(value) {
+    return isObjectLike(value) && _getTag(value) === arrayTag
+  }
+
+  function isArraylike(value) {
+    return value != null && typeof value != 'function' && isLength(value.length)
+  }
+
+  function isFunction(value) {
+    return _getTag(value) === funcTag
+  }
+
+  function isBoolean(value) {
+    return _getTag(value) === boolTag
+  }
+
+  function isDate(value) {
+    return _getTag(value) === dateTag
+  }
+
+  function isNull(value) {
+    return _getTag(value) === nullTag
+  }
+
+  function isLength(value) {
+    return typeof value == 'number' &&
+      value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER
+  }
+
+  function _getTag(value) {
+    return Object.prototype.toString.call(value)
   }
 
   // 二分查找
@@ -783,6 +842,18 @@ var tone94 = function () {
     defer,
     delay,
     isArguments,
+    lt,
+    lte,
+    gt,
+    gte,
+    eq,
+    isArray,
+    isBoolean,
+    isDate,
+    isNull,
+    isArraylike,
+    isFunction,
+    isLength,
 
     // --r
   }

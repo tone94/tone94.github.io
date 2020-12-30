@@ -116,8 +116,6 @@ var tone94 = function () {
     return result
   }
 
-  /** array  */
-
   function compact(ary) {
     var result = []
     for (var i = 0; i < ary.length; i++) {

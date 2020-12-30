@@ -37,6 +37,10 @@ var tone94 = function () {
 
   const MAX_SAFE_INTEGER = 9007199254740991;
 
+  function identity(value) {
+    return value;
+  }
+
   /** math  */
   function max(ary) {
     if (!ary.length) return undefined
@@ -784,6 +788,36 @@ var tone94 = function () {
     return left
   }
 
+  function sortedUniq(array) {
+    if (!array || !array.length) return []
+    var res = [array[0]]
+    var j = 0, i = 1
+    while (i < array.length) {
+      if (res[j] != array[i]) {
+        res.push(array[i])
+        ++j
+      }
+      ++i
+    }
+    return res
+  }
+
+  function countBy(collection, iteratee = identity) {
+    var res = new Map()
+    iteratee = getIterator(iteratee)
+    for (var item of collection) {
+      var key = iteratee(item)
+      if (res.has(key)) {
+        res.set(key, res.get(key) + 1)
+      } else {
+        res.set(key, 1)
+      }
+    }
+    return res
+  }
+
+
+
   function flatten(ary) {
     var result = []
     var i = 0
@@ -829,31 +863,31 @@ var tone94 = function () {
     return result
   }
 
-  function flattenDepth(ary, depth = 1) {
-    if (!ary || !ary.length) return []
-    var result = []
-    var func = (it, depth) => {
-      if (depth >= 0 && (it instanceof Array)) {
-        for (var i = 0; i < it.length; i++) {
-          func(it[i], depth--)
-        }
-      } else {
-        result.push(it)
-      }
-    }
-    func(ary, depth)
-    return result
-  }
+  // function flattenDepth(ary, depth = 1) {
+  //   if (!ary || !ary.length) return []
+  //   var result = []
+  //   var func = (it, depth) => {
+  //     if (depth >= 0 && (it instanceof Array)) {
+  //       for (var i = 0; i < it.length; i++) {
+  //         func(it[i], depth--)
+  //       }
+  //     } else {
+  //       result.push(it)
+  //     }
+  //   }
+  //   func(ary, depth)
+  //   return result
+  // }
 
   // 代码优化
-  function flattenDepth2(ary, depth = 1) {
+  function flattenDepth(ary, depth = 1) {
     if (depth == 0) {
       return ary.slice()
     }
     var result = []
     for (var i = 0; i < ary.length; i++) {
       if (ary[i] instanceof Array) {
-        result.push(...flattenDepth2(ary[i], depth - 1))
+        result.push(...flattenDepth(ary[i], depth - 1))
       } else {
         result.push(ary[i])
       }
@@ -894,6 +928,37 @@ var tone94 = function () {
       }
     }
     return result
+  }
+
+  function findLast(collection, predicate, fromIndex = collection.length - 1) {
+    if (!collection || !Object.keys(collection).length) return undefined
+    if (predicate === undefined) predicate = {}
+    var result
+    var test = getIterator(predicate)
+    for (var i = fromIndex; i > 0; i--) {
+      if (test(collection[i])) {
+        result = collection[i]
+        break
+      }
+    }
+    return result
+  }
+
+  function flatMap(collection, iteratee = identity) {
+    var ary = Object.values(collection)
+    var res = []
+    for (var e of ary) {
+      res.push(iteratee(e))
+    }
+    return flatten(res)
+  }
+
+  function flatMapDeep(collection, iteratee = identity) {
+    return flattenDeep(flatMap(collection, iteratee))
+  }
+
+  function flatMapDepth(collection, iteratee = identity, depth = 1) {
+    return flattenDepth(flatMap(collection, iteratee), --depth)
   }
 
   // 返回符合条件的索引
@@ -1102,7 +1167,12 @@ var tone94 = function () {
     subtract,
     castArray,
     conformsTo,
-
+    sortedUniq,
+    countBy,
+    findLast,
+    flatMap,
+    flatMapDeep,
+    flatMapDepth,
     // --r
   }
 

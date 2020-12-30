@@ -321,30 +321,6 @@ var tone94 = function () {
     return res
   }
 
-  // todo
-  function intersectionBy(ary, arrays, iteratee) {
-  }
-
-  function differenceBy(array, values, iteratee) {
-
-  }
-
-  function unionBy(ary, arrays, iteratee) {
-
-  }
-
-  function uniqBy(array, iteratee) {
-
-  }
-
-  function includes(collection, value, fromIndex = 0) {
-
-  }
-
-  function countBy(collection, iteratee) {
-
-  }
-
   function defer(func, ...args) {
     return delay(func, 0, ...args)
   }
@@ -754,6 +730,18 @@ var tone94 = function () {
     return res / array.length
   }
 
+  function meanBy(array, iteratee = identity) {
+    if (!array || !array.length) return 0
+    iteratee = getIterator(iteratee)
+    var res = 0
+    for (var item of array) {
+      var v = iteratee(item)
+      if (!isNumber(v)) return NaN
+      res += v
+    }
+    return res / array.length
+  }
+
   function castArray(value) {
     if (!arguments.length) return []
     if (isArray(value)) return value
@@ -813,6 +801,43 @@ var tone94 = function () {
     }
     return res
   }
+
+  /**
+     * Creates a function like `_.round`.
+     *
+     * @private
+     * @param {string} methodName The name of the `Math` method to use when rounding.
+     * @returns {Function} Returns the new round function.
+     */
+  function createRound(methodName) {
+    var func = Math[methodName];
+    return function (number, precision) {
+      number = toNumber(number);
+      precision = precision == null ? 0 : Math.min(toInteger(precision), 292);
+      if (precision && isFinite(number)) {
+        // Shift with exponential notation to avoid floating-point issues.
+        var pair = (number + 'e').split('e'),
+          value = func(pair[0] + 'e' + (+pair[1] + precision));
+
+        pair = (value + 'e').split('e');
+        return +(pair[0] + 'e' + (+pair[1] - precision));
+      }
+      return func(number);
+    };
+  }
+
+  function floor(number, precision = 0) {
+    return createRound("floor").call(null, number, precision)
+  }
+
+  function round(number, precision = 0) {
+    return createRound("round").call(null, number, precision)
+  }
+
+  function ceil(number, precision = 0) {
+    return createRound("ceil").call(null, number, precision)
+  }
+
 
 
 
@@ -1165,13 +1190,16 @@ var tone94 = function () {
     flatMap,
     flatMapDeep,
     flatMapDepth,
+    floor,
+    round,
+    ceil,
+    meanBy,
 
     // differenceBy,
     // differenceWith,
     //intersectionBy,
     //unionBy,
     //uniqBy,
-    //countBy,
     // --r
   }
 

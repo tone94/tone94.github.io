@@ -789,14 +789,14 @@ var tone94 = function () {
   }
 
   function countBy(collection, iteratee = identity) {
-    var res = new Map()
+    var res = {}
     iteratee = getIterator(iteratee)
     for (var item of collection) {
       var key = iteratee(item)
-      if (res.has(key)) {
-        res.set(key, res.get(key) + 1)
+      if (res[key]) {
+        res[key]++
       } else {
-        res.set(key, 1)
+        res[key] = 1
       }
     }
     return res

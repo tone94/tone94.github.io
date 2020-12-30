@@ -1097,19 +1097,13 @@ var tone94 = function () {
     pull,
     pullAll,
     difference,
-    // differenceBy,
-    // differenceWith,
     intersection,
-    //intersectionBy,
     union,
-    //unionBy,
     uniq,
-    //uniqBy,
     zip,
     unzip,
     without,
     xor,
-    //countBy,
     nth,
     tail,
     take,
@@ -1173,6 +1167,15 @@ var tone94 = function () {
     flatMap,
     flatMapDeep,
     flatMapDepth,
+    // tst
+
+
+    // differenceBy,
+    // differenceWith,
+    //intersectionBy,
+    //unionBy,
+    //uniqBy,
+    //countBy,
     // --r
   }
 

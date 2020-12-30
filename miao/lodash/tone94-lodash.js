@@ -91,21 +91,6 @@ var tone94 = function () {
     return iteratee(min) ? min : undefined
   }
 
-  // function minBy(ary, iteratee) {
-  //   if (!ary || !ary.length) return undefined
-  //   if (typeof iteratee != "function") {
-  //     var name = iteratee
-  //     iteratee = o => o[name]
-  //   }
-  //   var min = ary[0]
-  //   for (var i = 1; i < ary.length; i++) {
-  //     if ((iteratee(ary[i]) || Infinity) < (iteratee(min) || Infinity)) {
-  //       min = ary[i]
-  //     }
-  //   }
-  //   return iteratee(min) ? min : undefined
-  // }
-
   function sum(ary) {
     var result = 0
     for (var i = 0; i < ary.length; i++) {

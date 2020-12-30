@@ -1167,8 +1167,6 @@ var tone94 = function () {
     flatMap,
     flatMapDeep,
     flatMapDepth,
-    // tst
-
 
     // differenceBy,
     // differenceWith,

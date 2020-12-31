@@ -1104,10 +1104,17 @@ var tone94 = function () {
     return (number >= start && number < end)
   }
 
-  function random(lower, upper, floating) {
+  function random(lower = 0, upper = 1, floating) {
     // 参数处理
-    if (upper === undefined || !isNumber(upper)) {
-
+    if (isBoolean(lower)) {
+      floating = lower
+      lower = 0
+      upper = 1
+    }
+    if (isBoolean(upper)) {
+      floating = lower
+      upper = lower
+      lower = 0
     }
     if (lower > upper) [lower, upper] = [upper, lower]
     // 生成随机数

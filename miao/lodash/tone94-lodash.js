@@ -838,6 +838,10 @@ var tone94 = function () {
     return createRound("ceil").call(null, number, precision)
   }
 
+  function forEach(collection, iteratee = identity) {
+
+  }
+
 
 
 
@@ -1081,6 +1085,41 @@ var tone94 = function () {
     }
   }
 
+  // 源码里很多校验, 在此省略校验
+  function clamp(number, lower, upper) {
+    if (number >= upper) number = upper
+    if (number <= lower) number = lower
+    return number
+  }
+
+  // 包左不包右
+  function inRange(number, start = 0, end) {
+    if (end === undefined) {
+      end = start
+      start = 0
+    }
+    if (start > end) {
+      [start, end] = [end, start]
+    }
+    return (number >= start && number < end)
+  }
+
+  function random(lower, upper, floating) {
+    // 参数处理
+    if (upper === undefined || !isNumber(upper)) {
+
+    }
+    if (lower > upper) [lower, upper] = [upper, lower]
+    // 生成随机数
+    var res = Math.random() * (upper - lower) + lower
+    return (isFloat(lower) || isFloat(upper) || floating) ? res : Math.floor(res)
+  }
+
+  function isFloat(n) {
+    return n % 1 !== 0
+  }
+
+
 
   // 返回一个对象
   return {
@@ -1194,6 +1233,9 @@ var tone94 = function () {
     round,
     ceil,
     meanBy,
+    clamp,
+    inRange,
+    random,
 
     // differenceBy,
     // differenceWith,

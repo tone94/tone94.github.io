@@ -304,22 +304,7 @@ var tone94 = function () {
     return res
   }
 
-  // 数组的交集
-  function intersection(ary, ...arrays) {
-    if (!ary || !ary.length) return []
-    var res = [...ary]
-    for (var ary of arrays) {
-      var t = []
-      for (var i = 0; i < res.length; i++) {
-        if (ary.indexOf(res[i]) != -1) {
-          t.push(res[i])
-        }
-      }
-      if (!t.length) return []
-      res = [...t]
-    }
-    return res
-  }
+
 
   function defer(func, ...args) {
     return delay(func, 0, ...args)
@@ -1155,6 +1140,68 @@ var tone94 = function () {
     return position >= 0 && string.slice(position, end) == target;
   }
 
+  // 数组的交集
+  function intersection(ary, ...arrays) {
+    if (!ary || !ary.length) return []
+    var res = [...ary]
+    for (var ary of arrays) {
+      var t = []
+      for (var i = 0; i < res.length; i++) {
+        if (ary.indexOf(res[i]) != -1) {
+          t.push(res[i])
+        }
+      }
+      if (!t.length) return []
+      res = [...t]
+    }
+    return res
+  }
+
+  function intersectionBy(ary, ...arrays) {
+
+  }
+
+  function ary(func, n = func.length) {
+    return function (...args) {
+      return func(...args.slice(0, n))
+    }
+  }
+
+  function before(n, func) {
+    var c = 0
+    var res
+    return function (...args) {
+      if (c < n) {
+        return res = func.call(this, ...args)
+        c++
+      } else {
+        return res
+      }
+    }
+  }
+
+  function after(n, func) {
+    var c = 0
+    return function (...args) {
+      c++
+      if (c > n) {
+        return func.call(this.args)
+      }
+    }
+  }
+
+  function flip(func) {
+    return function (...args) {
+      return func(args.reverse())
+    }
+  }
+
+  function negate(predicate) {
+    return function (...args) {
+      return !predicate(...args)
+    }
+  }
+
   // 返回一个对象
   return {
     compact,
@@ -1275,6 +1322,11 @@ var tone94 = function () {
     toLower,
     toUpper,
     endsWith,
+    ary,
+    before,
+    after,
+    flip,
+    negate,
 
 
     // differenceBy,

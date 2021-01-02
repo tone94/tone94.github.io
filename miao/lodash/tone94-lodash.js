@@ -1136,18 +1136,12 @@ var tone94 = function () {
     return 0
   }
 
-  function toLower(value) {
-    if (value) {
-      return toString(value).toLowerCase();
-    }
-    return ""
+  function toLower(value = "") {
+    return value.toLowerCase();
   }
 
-  function toUpper(value) {
-    if (value) {
-      return toString(value).toUpperCase()
-    }
-    return ""
+  function toUpper(value = "") {
+    return value.toUpperCase()
   }
 
   // position 要搜索到的位置

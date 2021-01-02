@@ -1126,7 +1126,40 @@ var tone94 = function () {
     return n % 1 !== 0
   }
 
+  function size(collection) {
+    if (isArrayLike(collection) || isString(collection)) {
+      return collection.length
+    }
+    if (isObject(collection)) {
+      return Object.keys(collection).length
+    }
+    return 0
+  }
 
+  function toLower(value) {
+    if (value) {
+      return toString(value).toLowerCase();
+    }
+    return ""
+  }
+
+  function toUpper(value) {
+    if (value) {
+      return toString(value).toUpperCase()
+    }
+    return ""
+  }
+
+  // position 要搜索到的位置
+  function endsWith(string = "", target, position = string.length) {
+    position = position === undefined
+      ? string.length
+      : clamp(toInteger(position), 0, string.length)
+
+    var end = position;
+    position -= target.length;
+    return position >= 0 && string.slice(position, end) == target;
+  }
 
   // 返回一个对象
   return {
@@ -1243,6 +1276,12 @@ var tone94 = function () {
     clamp,
     inRange,
     random,
+    identity,
+    size,
+    toLower,
+    toUpper,
+    endsWith,
+
 
     // differenceBy,
     // differenceWith,

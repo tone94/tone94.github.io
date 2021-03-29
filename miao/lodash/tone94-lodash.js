@@ -41,7 +41,6 @@ var tone94 = function () {
     return value;
   }
 
-  /** math  */
   function max(ary) {
     if (!ary.length) return undefined
     var max = ary[0]
@@ -558,7 +557,8 @@ var tone94 = function () {
   // Checks if value is the language type of Object. 
   // (e.g. arrays, functions, objects, regexes, new Number(0), and new String(''))
   function isObject(value) {
-    return value != null && typeof value === 'object' || typeof value === "function"
+    let type = typeof value
+    return value != null && (type === 'object' || type === "function")
   }
 
   function isString(value) {
@@ -725,6 +725,26 @@ var tone94 = function () {
       res += v
     }
     return res / array.length
+  }
+
+  function mapKeys(object, iteratee = identity) {
+    let res = {}
+    for (let key in object) {
+      let val = object[key]
+      let newKey = iteratee(val, key, object)
+      res[newKey] = val
+    }
+    return res
+  }
+
+  function mapValues(object, iteratee = identity) {
+    let res = {}
+    iteratee = getIterator(iteratee)
+    for (let key in object) {
+      let val = iteratee(object[key], key, object)
+      res[key] = val
+    }
+    return res
   }
 
   function castArray(value) {
@@ -1167,6 +1187,21 @@ var tone94 = function () {
     }
   }
 
+  function unary(func) {
+    return ary(func, 1)
+  }
+
+  function pick(object, path) {
+    if (object == undefined || path.length == 0) return {}
+    let res = {}
+    for (let key of path) {
+      if (key in object) {
+        res[key] = object[key]
+      }
+    }
+    return res
+  }
+
   function before(n, func) {
     var c = 0
     var res
@@ -1192,7 +1227,7 @@ var tone94 = function () {
 
   function flip(func) {
     return function (...args) {
-      return func(args.reverse())
+      return func.apply(null, args.reverse())
     }
   }
 
@@ -1327,6 +1362,10 @@ var tone94 = function () {
     after,
     flip,
     negate,
+    unary,
+    pick,
+    mapKeys,
+    mapValues,
 
 
     // differenceBy,

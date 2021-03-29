@@ -303,7 +303,56 @@ var tone94 = function () {
     return res
   }
 
+  function differenceBy(array, ...values) {
+    var iteratee = identity
+    var collection = concat(...values)
+    var res = []
+    var last = collection[collection.length - 1]
+    if (isFunction(last) || isString(last)) {
+      iteratee = getIterator(collection.pop())
+    }
+    for (var i = 0; i < collection.length; i++) {
+      collection[i] = iteratee(collection[i])
+    }
+    for (var i = 0; i < array.length; i++) {
+      var val = iteratee(array[i])
+      if (collection.indexOf(val) == -1) {
+        res.push(array[i])
+      }
+    }
+    return res
+  }
 
+  // 最后一个参数是函数
+  function differenceWith(array, ...values) {
+    var collection = concat(...values)
+    var last = collection.pop()
+    if (isFunction(last)) {
+      var compareFunc = last
+      return array.filter(it => {
+        if (collection.some(cit => compareFunc(cit, it))) {
+          return false
+        } else {
+          return true
+        }
+      })
+    }
+    return array
+  }
+
+  // function isEqual(value, other) {
+  //   if (value === other) {
+  //     return true;
+  //   }
+  //   if (value == null || other == null || (!isObjectLike(value) && !isObjectLike(other))) {
+  //     return value !== value && other !== other;
+  //   }
+  //   // 判断类型
+  //   if (_getTag(value) !== _getTag(other)) {
+  //     return false
+  //   }
+
+  // }
 
   function defer(func, ...args) {
     return delay(func, 0, ...args)
@@ -1275,6 +1324,8 @@ var tone94 = function () {
     pull,
     pullAll,
     difference,
+    differenceBy,
+    differenceWith,
     intersection,
     union,
     uniq,
@@ -1366,10 +1417,8 @@ var tone94 = function () {
     pick,
     mapKeys,
     mapValues,
+    // isEqual,
 
-
-    // differenceBy,
-    // differenceWith,
     //intersectionBy,
     //unionBy,
     //uniqBy,

@@ -143,7 +143,6 @@ var tone94 = function () {
   function lastIndexOf(ary, val, fromIndex = ary.length - 1) {
     if (val == null) return ary.length
     var idx = -1
-    // todo 需要处理fromIndex
     for (var i = fromIndex; i >= 0; i--) {
       if (ary[i] == val) {
         idx = i
@@ -340,19 +339,7 @@ var tone94 = function () {
     return array
   }
 
-  // function isEqual(value, other) {
-  //   if (value === other) {
-  //     return true;
-  //   }
-  //   if (value == null || other == null || (!isObjectLike(value) && !isObjectLike(other))) {
-  //     return value !== value && other !== other;
-  //   }
-  //   // 判断类型
-  //   if (_getTag(value) !== _getTag(other)) {
-  //     return false
-  //   }
 
-  // }
 
   function defer(func, ...args) {
     return delay(func, 0, ...args)
@@ -1226,10 +1213,6 @@ var tone94 = function () {
     return res
   }
 
-  function intersectionBy(ary, ...arrays) {
-
-  }
-
   function ary(func, n = func.length) {
     return function (...args) {
       return func(...args.slice(0, n))
@@ -1286,8 +1269,35 @@ var tone94 = function () {
     }
   }
 
+  // todo 
+  function assign(object, ...sources) {
+
+  }
+
+  function isEqual(value, other) {
+    if (value === other) {
+      return true;
+    }
+    if (value == null || other == null || (!isObjectLike(value) && !isObjectLike(other))) {
+      return value !== value && other !== other;
+    }
+    // 判断类型
+    if (_getTag(value) !== _getTag(other)) {
+      return false
+    }
+
+  }
+
+  function intersectionBy(ary, ...arrays) {
+
+  }
+
   // 返回一个对象
   return {
+    assign,
+    isEqual,
+    intersectionBy,
+    // todo top
     compact,
     join,
     last,
@@ -1417,11 +1427,7 @@ var tone94 = function () {
     pick,
     mapKeys,
     mapValues,
-    // isEqual,
 
-    //intersectionBy,
-    //unionBy,
-    //uniqBy,
     // --r
   }
 
